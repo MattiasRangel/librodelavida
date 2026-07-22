@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2b160d" />
+  <title>Para Maivy 💛</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Dancing+Script:wght@600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="pagina-carta">
+
+  <!-- Banner decorativo de papel picado, se llena por JS -->
+  <div class="papel-picado" id="papelPicado" aria-hidden="true">
+    <div class="papel-picado__hilo"></div>
+  </div>
+
+  <!-- Pétalos de cempasúchil cayendo (decorativo) -->
+  <div class="petalos" id="petalos" aria-hidden="true"></div>
+
+  <!-- Gifs decorativos alrededor de la página (no como galería, solo ambiente) -->
+  <div class="franja-decorativa" aria-hidden="true">
+    <span class="medallon-gif"><img src="assets/gif1.gif" alt="" loading="lazy" /></span>
+    <span class="medallon-gif"><img src="assets/gif2.gif" alt="" loading="lazy" /></span>
+  </div>
+
+  <header class="encabezado-carta">
+    <p class="pregunta__eyebrow">🌼🕯️🌼</p>
+    <h1 class="encabezado-carta__titulo">Para Maivy</h1>
+  </header>
+
+  <!-- ============================= CELEBRACIÓN ============================= -->
+  <section class="contenedor">
+    <div class="celebracion">
+      <p class="celebracion__texto">¡Dijiste que sí! 💙</p>
+      <p class="celebracion__sub">Y ahora quiero contarte todo lo que siento</p>
+    </div>
+  </section>
+
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🌼</span></div>
+
+  <!-- ============================= CARTA ============================= -->
+  <section class="contenedor">
+    <article class="pergamino" id="pergamino">
+      <p class="pergamino__saludo">Maivy,</p>
+      <p class="pergamino__para">
+        Hace mucho tiempo no sentía algo tan genuino, ni encontraba a alguien con quien
+        enamorarme de verdad y dejar salir al niño que llevo dentro. Nadie me había dado
+        tanta seguridad para expresar lo que siento con tranquilidad, ni había valorado
+        así mis sentimientos.
+      </p>
+      <p class="pergamino__para">
+        Cuando te vi, no solo descubrí a la mujer más hermosa. En tus ojos encontré una
+        paz y una estabilidad que me atraparon, y me despertaste unas ganas inmensas de
+        conocer a la niña tan dulce que llevas dentro.
+      </p>
+      <p class="pergamino__para">
+        Lo que he sentido en tan poco tiempo es increíble. Es como si te conociera de
+        otra vida, porque tantas casualidades en nuestras emociones, familias y gustos
+        no pueden ser coincidencia. Haber conectado así me convence de que estaba
+        destinado a encontrarte.
+      </p>
+      <p class="pergamino__para">
+        Ahora que eres mi novia, por fin tengo mi lugar seguro. Siempre quise estar con
+        alguien como tú. Voy a luchar por nosotros y siento que este amor no se acabará
+        nunca. Te quiero mucho, y espero que este sea el comienzo de algo para toda la
+        vida.
+      </p>
+      <p class="pergamino__firma">Tuyo, con todo mi corazón 💙</p>
+    </article>
+  </section>
+
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🌼</span></div>
+
+  <!-- ============================= RAZONES (estilo lotería) ============================= -->
+  <section class="seccion-razones contenedor">
+    <h2 class="seccion-titulo">Razones para quererte</h2>
+    <div class="loteria">
+      <div class="carta-loteria"><span class="carta-loteria__num">01</span><span class="carta-loteria__icono">🎸</span><p>Por la paz que transmites.</p></div>
+      <div class="carta-loteria"><span class="carta-loteria__num">02</span><span class="carta-loteria__icono">🌻</span><p>Por lo tierna que eres</p></div>
+      <div class="carta-loteria"><span class="carta-loteria__num">03</span><span class="carta-loteria__icono">🕯️</span><p>por la seguridad que me das</p></div>
+      <div class="carta-loteria"><span class="carta-loteria__num">04</span><span class="carta-loteria__icono">💛</span><p>Por las mil casualidades que nos unieron</p></div>
+      <div class="carta-loteria"><span class="carta-loteria__num">05</span><span class="carta-loteria__icono">🦋</span><p>Por la hermosa persona que eres.</p></div>
+      <div class="carta-loteria"><span class="carta-loteria__num">06</span><span class="carta-loteria__icono">🔥</span><p>Porque siempre quise tenerte en mi vida.</p></div>
+    </div>
+  </section>
+
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🌼</span></div>
+
+  <!-- ============================= GALERÍA DE FOTOS ============================= -->
+  <section class="seccion-galeria">
+    <h2 class="seccion-titulo">Nuestros recuerdos</h2>
+
+    <div class="galeria" id="galeria">
+      <figure class="galeria__item">
+        <img src="assets/foto1.jpg" alt="Foto 1 de nosotros" loading="lazy" />
+      </figure>
+      <figure class="galeria__item">
+        <img src="assets/foto2.jpg" alt="Foto 2 de nosotros" loading="lazy" />
+      </figure>
+      <figure class="galeria__item">
+        <img src="assets/foto4.jpg" alt="Foto 3 de nosotros" loading="lazy" />
+      </figure>
+      <figure class="galeria__item">
+        <img src="assets/foto3.jpg" alt="Foto 4 de nosotros" loading="lazy" />
+      </figure>
+      <figure class="galeria__item">
+        <img src="assets/foto5.jpg" alt="Foto 5 de nosotros" loading="lazy" />
+      </figure>
+      <figure class="galeria__item">
+        <img src="assets/foto6.jpg" alt="Foto 6 de nosotros" loading="lazy" />
+      </figure>
+      <figure class="galeria__item">
+        <img src="assets/foto7.jpg" alt="Foto 7 de nosotros" loading="lazy" />
+      </figure>
+      <figure class="galeria__item">
+        <img src="assets/foto8.jpg" alt="Foto 8 de nosotros" loading="lazy" />
+      </figure>
+      <figure class="galeria__item">
+        <img src="assets/foto9.jpg" alt="Foto 9 de nosotros" loading="lazy" />
+      </figure>
+      <figure class="galeria__item">
+        <img src="assets/foto10.jpg" alt="Foto 10 de nosotros" loading="lazy" />
+      </figure>
+    </div>
+
+    <div class="galeria__puntos" id="galeriaPuntos" aria-hidden="true"></div>
+  </section>
+
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🌼</span></div>
+
+  <!-- ============================= CONTADOR DE TIEMPO JUNTOS ============================= -->
+  <section class="seccion-contador contenedor">
+    <h2 class="seccion-titulo">Nuestro tiempo juntos</h2>
+    <div class="contador" id="contador" aria-live="polite">
+      <div class="contador__bloque">
+        <span class="contador__numero" id="contDias">0</span>
+        <span class="contador__etiqueta">días</span>
+      </div>
+      <div class="contador__bloque">
+        <span class="contador__numero" id="contHoras">00</span>
+        <span class="contador__etiqueta">horas</span>
+      </div>
+      <div class="contador__bloque">
+        <span class="contador__numero" id="contMin">00</span>
+        <span class="contador__etiqueta">min</span>
+      </div>
+    </div>
+    <p class="contador__nota">Desde el día en que dijiste que sí 💛</p>
+  </section>
+
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🌼</span></div>
+
+  <!-- ============================= PROMESAS ============================= -->
+  <section class="seccion-promesas contenedor">
+    <h2 class="seccion-titulo">Mis promesas</h2>
+    <ul class="lista-promesas">
+      <li>- Prometo cuidar esto que estamos construyendo.</li>
+      <li>- Prometo escucharte y seguir conociéndote cada día.</li>
+      <li>- Prometo reírme contigo tanto como sea posible.</li>
+      <li>- Prometo luchar por nosotros, siempre.</li>
+    </ul>
+  </section>
+
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🌼</span></div>
+
+  <!-- Gifs decorativos alrededor de la página (no como galería, solo ambiente) -->
+  <div class="franja-decorativa" aria-hidden="true">
+    <span class="medallon-gif"><img src="assets/gif3.gif" alt="" loading="lazy" /></span>
+    <span class="medallon-gif"><img src="assets/gif4.gif" alt="" loading="lazy" /></span>
+  </div>
+
+  <footer class="pie-carta">
+    <p class="pie-carta__firma">Maivy &amp; Mattias 💙</p>
+    <a class="enlace-volver" href="index.html">🡐 Volver al principio</a>
+  </footer>
+
+  <!-- ============================= MÚSICA (opcional) ============================= -->
+  <audio id="audioFondo" src="assets/cancion.mp3" loop preload="none"></audio>
+  <button type="button" class="boton-musica" id="btnMusica" aria-pressed="false" aria-label="Reproducir música">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.4" fill="none"/>
+      <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.4" fill="none"/>
+    </svg>
+  </button>
+  <div class="aviso-musica" id="avisoMusica">
+    Agrega tu canción en <strong>assets/musica.mp3</strong> para activar la música 🎶
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

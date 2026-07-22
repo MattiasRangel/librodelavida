@@ -1,0 +1,799 @@
+/* =========================================================================
+   EL LIBRO DE LA VIDA — Carta interactiva
+   Hoja de estilos global — MOBILE FIRST
+   Todo se diseña primero para pantallas de celular y solo después
+   se adapta hacia arriba con @media (min-width: ...).
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. TOKENS DE DISEÑO
+   Paleta inspirada en madera tallada, cempasúchil y papel picado.
+   ------------------------------------------------------------------------- */
+:root {
+  /* Colores */
+  --madera-oscura: #2b160d;
+  --madera: #4a2618;
+  --madera-clara: #6b3a22;
+  --rojo-oscuro: #7a1e1e;
+  --naranja: #d9691e;
+  --oro: #e8a33d;
+  --oro-claro: #f4c860;
+  --magenta-picado: #c23b6b;
+  --pergamino: #f3e3c0;
+  --pergamino-sombra: #e2c98f;
+  --texto-oscuro: #3a2213;
+  --texto-suave: #5c3a24;
+
+  /* Tipografía */
+  --font-titulo: "Berkshire Swash", cursive;
+  --font-firma: "Dancing Script", cursive;
+  --font-cuerpo: "Lora", "Georgia", serif;
+
+  /* Layout */
+  --ancho-maximo: 480px;
+  --radio-suave: 18px;
+  --sombra-calida: 0 12px 30px rgba(20, 8, 4, 0.55);
+}
+
+/* -------------------------------------------------------------------------
+   2. RESET Y BASE
+   ------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* Evita que cualquier decoración desborde el ancho del celular */
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100svh;
+  min-height: 100dvh;
+  background: radial-gradient(circle at 50% -10%, var(--madera-clara), var(--madera-oscura) 65%);
+  background-attachment: fixed;
+  color: var(--texto-oscuro);
+  font-family: var(--font-cuerpo);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+/* Textura sutil de veta de madera sobre el fondo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(0, 0, 0, 0.12) 0px,
+    rgba(0, 0, 0, 0.12) 2px,
+    transparent 2px,
+    transparent 26px
+  );
+  opacity: 0.5;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+/* Utilidad: contenido centrado con ancho máximo, sigue centrado en tablets/desktop */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* -------------------------------------------------------------------------
+   3. BANNER DE PAPEL PICADO (decoración superior, generado por JS)
+   ------------------------------------------------------------------------- */
+.papel-picado {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 56px;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), transparent);
+}
+
+.papel-picado__hilo {
+  position: absolute;
+  top: 10px;
+  left: -5%;
+  width: 110%;
+  height: 2px;
+  background: rgba(243, 227, 192, 0.55);
+}
+
+.bandera {
+  --c: var(--oro);
+  position: relative;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 40px;
+  margin-top: 10px;
+  background: var(--c);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%);
+  transform-origin: top center;
+  animation: ondear 3.2s ease-in-out infinite;
+  box-shadow: inset 0 -6px 8px rgba(0, 0, 0, 0.18);
+}
+
+.bandera::before,
+.bandera::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(43, 22, 13, 0.55);
+}
+.bandera::before {
+  width: 7px;
+  height: 7px;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.bandera::after {
+  width: 5px;
+  height: 5px;
+  top: 19px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bandera:nth-child(4n + 1) { --c: var(--rojo-oscuro); animation-delay: 0s; }
+.bandera:nth-child(4n + 2) { --c: var(--oro); animation-delay: 0.3s; }
+.bandera:nth-child(4n + 3) { --c: var(--magenta-picado); animation-delay: 0.6s; }
+.bandera:nth-child(4n)     { --c: var(--naranja); animation-delay: 0.9s; }
+
+@keyframes ondear {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+/* -------------------------------------------------------------------------
+   4. PÉTALOS DE CEMPASÚCHIL CAYENDO (generados por JS)
+   ------------------------------------------------------------------------- */
+.petalos {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petalo {
+  position: absolute;
+  top: -8%;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle at 35% 35%, var(--oro-claro), var(--naranja) 70%, var(--rojo-oscuro) 100%);
+  border-radius: 70% 30% 65% 35% / 60% 40% 60% 40%;
+  opacity: 0.85;
+  animation-name: caer;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes caer {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(var(--deriva, 40px), 118vh) rotate(360deg);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   5. PÁGINA 1 — index.html (la pregunta)
+   ------------------------------------------------------------------------- */
+.pantalla-pregunta {
+  position: relative;
+  z-index: 2;
+  min-height: 100svh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 20px 56px;
+}
+
+.resplandor {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 320px;
+  height: 320px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(232, 163, 61, 0.35), transparent 70%);
+  z-index: -1;
+  filter: blur(4px);
+}
+
+.pregunta__eyebrow {
+  font-family: var(--font-firma);
+  font-size: 1.4rem;
+  color: var(--oro-claro);
+  margin: 0 0 4px;
+}
+
+.pregunta__titulo {
+  font-family: var(--font-titulo);
+  font-size: clamp(2rem, 9vw, 2.8rem);
+  line-height: 1.25;
+  color: var(--oro-claro);
+  text-shadow: 0 2px 0 var(--rojo-oscuro), 0 8px 24px rgba(0, 0, 0, 0.6);
+  margin: 0 0 14px;
+}
+
+.pregunta__texto {
+  font-size: 1rem;
+  color: var(--pergamino);
+  opacity: 0.9;
+  max-width: 320px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.botonera {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.boton {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 16px 44px;
+  min-height: 56px;
+  min-width: 160px;
+  touch-action: manipulation;
+  transition: transform 0.15s ease;
+}
+
+.boton:active {
+  transform: scale(0.96);
+}
+
+.boton--si {
+  background: linear-gradient(135deg, var(--oro-claro), var(--naranja));
+  color: var(--madera-oscura);
+  box-shadow: 0 10px 24px rgba(217, 105, 30, 0.55), 0 0 0 3px rgba(244, 200, 96, 0.25);
+}
+
+.boton--no {
+  position: static;
+  background: transparent;
+  color: var(--pergamino);
+  border: 2px solid var(--pergamino);
+}
+
+/* Cuando empieza a "huir", se vuelve posición fija dentro del viewport */
+.boton--no.en-fuga {
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  margin: 0;
+}
+
+.pregunta__pie {
+  margin-top: 34px;
+  font-size: 0.8rem;
+  color: var(--pergamino);
+  opacity: 0.6;
+}
+
+/* -------------------------------------------------------------------------
+   6. PÁGINA 2 — carta.html
+   ------------------------------------------------------------------------- */
+.pagina-carta {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 90px;
+}
+
+.encabezado-carta {
+  text-align: center;
+  padding: 18px 20px 6px;
+}
+
+.encabezado-carta__titulo {
+  font-family: var(--font-titulo);
+  color: var(--oro-claro);
+  font-size: clamp(1.7rem, 7vw, 2.2rem);
+  text-shadow: 0 2px 0 var(--rojo-oscuro);
+  margin: 6px 0 0;
+}
+
+/* --- Pergamino / carta --- */
+.pergamino {
+  width: 90%;
+  max-width: 420px;
+  margin: 18px auto 0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.05), transparent 30%),
+    repeating-linear-gradient(0deg, rgba(122, 30, 30, 0.03) 0px, transparent 2px, transparent 26px),
+    linear-gradient(160deg, var(--pergamino), var(--pergamino-sombra) 90%);
+  border-radius: 6px 22px 6px 22px;
+  box-shadow: var(--sombra-calida), inset 0 0 0 1px rgba(122, 30, 30, 0.25);
+  padding: 30px 22px 26px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: aparecer 0.9s ease forwards 0.15s;
+}
+
+.pergamino::before,
+.pergamino::after {
+  content: "🌼";
+  position: absolute;
+  font-size: 1.4rem;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.35));
+}
+.pergamino::before { top: -14px; left: -10px; }
+.pergamino::after { bottom: -14px; right: -10px; }
+
+@keyframes aparecer {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pergamino__saludo {
+  font-family: var(--font-firma);
+  font-size: 1.7rem;
+  color: var(--rojo-oscuro);
+  margin: 0 0 6px;
+}
+
+.pergamino__para {
+  font-family: var(--font-cuerpo);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--texto-oscuro);
+  margin: 0 0 18px;
+}
+
+.pergamino__para:first-of-type::first-letter {
+  font-family: var(--font-titulo);
+  font-size: 2.6rem;
+  color: var(--rojo-oscuro);
+  float: left;
+  line-height: 0.8;
+  padding: 6px 8px 0 0;
+}
+
+.pergamino__firma {
+  font-family: var(--font-firma);
+  font-size: 1.8rem;
+  color: var(--rojo-oscuro);
+  text-align: right;
+  margin: 22px 0 0;
+}
+
+/* --- Galería con CSS Scroll Snap --- */
+.seccion-galeria {
+  margin-top: 40px;
+  padding: 0 0 4px;
+}
+
+.seccion-titulo {
+  font-family: var(--font-titulo);
+  color: var(--oro-claro);
+  text-align: center;
+  font-size: 1.5rem;
+  text-shadow: 0 2px 0 var(--rojo-oscuro);
+  margin: 0 0 14px;
+}
+
+.galeria {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 20px 18px;
+  scrollbar-width: none;
+}
+.galeria::-webkit-scrollbar { display: none; }
+
+.galeria__item {
+  flex: 0 0 78%;
+  max-width: 280px;
+  scroll-snap-align: center;
+  border-radius: var(--radio-suave);
+  overflow: hidden;
+  border: 4px solid var(--madera);
+  box-shadow: var(--sombra-calida);
+  background: var(--madera);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.galeria__item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Utilidad de aparición suave reutilizada por lotería, mosaico, contador y promesas */
+.revelar {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.revelar.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.galeria__item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.galeria__puntos {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(243, 227, 192, 0.35);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.punto.activo {
+  background: var(--oro-claro);
+  transform: scale(1.25);
+}
+
+/* --- Celebración (banner "¡Dijiste que sí!") --- */
+.celebracion {
+  text-align: center;
+  padding: 6px 0 2px;
+}
+
+.celebracion__texto {
+  font-family: var(--font-titulo);
+  font-size: clamp(1.6rem, 7vw, 2.1rem);
+  color: var(--oro-claro);
+  text-shadow: 0 2px 0 var(--rojo-oscuro), 0 8px 20px rgba(0, 0, 0, 0.55);
+  margin: 0 0 6px;
+  animation: latido 1.6s ease-in-out 1;
+}
+
+.celebracion__sub {
+  font-size: 0.95rem;
+  color: var(--pergamino);
+  opacity: 0.85;
+  margin: 0;
+}
+
+@keyframes latido {
+  0% { transform: scale(0.85); opacity: 0; }
+  55% { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* --- Divisor decorativo entre secciones --- */
+.divisor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin: 34px 0;
+  font-size: 1rem;
+  color: var(--oro);
+  opacity: 0.8;
+}
+
+.divisor span:nth-child(2) {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* --- Sección: razones (cartas estilo lotería) --- */
+.seccion-razones {
+  margin-top: 6px;
+}
+
+.loteria {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.carta-loteria {
+  position: relative;
+  background: linear-gradient(160deg, var(--pergamino), var(--pergamino-sombra) 90%);
+  border: 3px solid var(--madera);
+  border-radius: 10px;
+  padding: 16px 10px 14px;
+  text-align: center;
+  box-shadow: var(--sombra-calida);
+}
+
+.carta-loteria__num {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  font-family: var(--font-cuerpo);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--rojo-oscuro);
+  opacity: 0.7;
+}
+
+.carta-loteria__icono {
+  display: block;
+  font-size: 1.9rem;
+  margin-bottom: 8px;
+}
+
+.carta-loteria p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--texto-oscuro);
+}
+
+.carta-loteria:nth-child(odd) {
+  transform: rotate(-1.5deg);
+}
+.carta-loteria:nth-child(even) {
+  transform: rotate(1.5deg);
+}
+
+/* --- Gifs decorativos "alrededor de la página" (no son una galería) --- */
+.franja-decorativa {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: var(--ancho-maximo);
+  margin: 10px auto;
+  padding: 0 26px;
+}
+
+.medallon-gif {
+  display: block;
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--oro);
+  box-shadow: var(--sombra-calida);
+  background: var(--madera);
+}
+
+.medallon-gif img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Sección: contador de tiempo juntos --- */
+.seccion-contador {
+  text-align: center;
+  margin-top: 6px;
+}
+
+.contador {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.contador__bloque {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 78px;
+  padding: 14px 10px;
+  background: linear-gradient(160deg, var(--madera-clara), var(--madera));
+  border: 2px solid var(--oro);
+  border-radius: 14px;
+  box-shadow: var(--sombra-calida);
+}
+
+.contador__numero {
+  font-family: var(--font-titulo);
+  font-size: 1.8rem;
+  color: var(--oro-claro);
+  line-height: 1;
+}
+
+.contador__etiqueta {
+  margin-top: 4px;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pergamino);
+  opacity: 0.8;
+}
+
+.contador__nota {
+  margin-top: 14px;
+  font-family: var(--font-firma);
+  font-size: 1.2rem;
+  color: var(--oro-claro);
+}
+
+/* --- Sección: promesas --- */
+.seccion-promesas {
+  margin-top: 6px;
+}
+
+.lista-promesas {
+  list-style: none;
+  margin: 0;
+  padding: 22px 18px;
+  background: linear-gradient(160deg, var(--pergamino), var(--pergamino-sombra) 90%);
+  border-radius: 6px 22px 6px 22px;
+  box-shadow: var(--sombra-calida);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lista-promesas li {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--texto-oscuro);
+}
+
+.pie-carta__firma {
+  font-family: var(--font-firma);
+  font-size: 1.5rem;
+  color: var(--oro-claro);
+  margin: 0 0 10px;
+}
+
+/* --- Botón de música flotante --- */
+.boton-musica {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 30;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid var(--oro-claro);
+  background: radial-gradient(circle at 35% 30%, var(--madera-clara), var(--madera-oscura));
+  color: var(--oro-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--sombra-calida);
+  cursor: pointer;
+}
+
+.boton-musica svg {
+  width: 24px;
+  height: 24px;
+}
+
+.boton-musica.sonando svg {
+  animation: girar 2.4s linear infinite;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+.aviso-musica {
+  position: fixed;
+  right: 18px;
+  bottom: 82px;
+  z-index: 30;
+  max-width: 220px;
+  background: var(--pergamino);
+  color: var(--texto-oscuro);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  padding: 10px 12px;
+  border-radius: 10px;
+  box-shadow: var(--sombra-calida);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.aviso-musica.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pie-carta {
+  text-align: center;
+  margin-top: 44px;
+}
+
+.enlace-volver {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--pergamino);
+  opacity: 0.75;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+
+/* -------------------------------------------------------------------------
+   7. ACCESIBILIDAD: respeta "reducir movimiento"
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .bandera,
+  .petalo,
+  .celebracion__texto,
+  .boton-musica.sonando svg {
+    animation: none !important;
+  }
+  .pergamino,
+  .galeria__item,
+  .revelar,
+  .boton {
+    transition: none !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   8. MOBILE-FIRST → adaptación hacia pantallas más grandes
+   El diseño ya funciona perfecto en celular; aquí solo evitamos que
+   se vea "estirado" en tablets / escritorio, sin cambiar la esencia.
+   ------------------------------------------------------------------------- */
+@media (min-width: 600px) {
+  .pregunta__titulo { font-size: 2.9rem; }
+  .pergamino { padding: 38px 34px 32px; }
+  .galeria__item { flex-basis: 46%; }
+  .loteria { grid-template-columns: repeat(3, 1fr); }
+}
