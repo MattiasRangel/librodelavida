@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnSi.addEventListener("click", () => {
 
       // Hacemos que el botón cambie visualmente para que sepa que lo presionó
-      btnSi.textContent = "¡Sabía que dirías que sí! 💛";
+      btnSi.textContent = "¡Sabía que dirías que sí! 🩵";
       btnSi.style.transform = "scale(1.1)";
 
       // Esperamos 1.5 segundos para que escuche la música antes de cambiar de página
