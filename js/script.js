@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   crearPapelPicado();
   crearPetalos();
+  crearDestellos();
   iniciarBotonEsquivo();
   iniciarGaleria();
   iniciarRevelado();
@@ -78,6 +79,40 @@ document.addEventListener("DOMContentLoaded", () => {
       petalo.style.setProperty("--deriva", `${deriva}px`);
 
       fragmento.appendChild(petalo);
+    }
+    contenedor.appendChild(fragmento);
+  }
+
+  /* -----------------------------------------------------------------------
+     2b. DESTELLOS DORADOS TITILANDO
+     Pequeñas chispas de luz repartidas por la pantalla, con tamaños,
+     posiciones y ritmos aleatorios para que se sientan orgánicas.
+     ----------------------------------------------------------------------- */
+  function crearDestellos() {
+    const contenedor = document.getElementById("destellos");
+    if (!contenedor || prefiereMenosMovimiento) return;
+
+    const cantidad = window.innerWidth < 380 ? 14 : 22;
+    const fragmento = document.createDocumentFragment();
+
+    for (let i = 0; i < cantidad; i++) {
+      const destello = document.createElement("span");
+      destello.className = "destello";
+
+      const tamano = 2 + Math.random() * 3;
+      const izquierda = Math.random() * 100;
+      const arriba = Math.random() * 100;
+      const duracion = 2.2 + Math.random() * 3;
+      const retraso = Math.random() * -duracion;
+
+      destello.style.width = `${tamano}px`;
+      destello.style.height = `${tamano}px`;
+      destello.style.left = `${izquierda}%`;
+      destello.style.top = `${arriba}%`;
+      destello.style.animationDuration = `${duracion}s`;
+      destello.style.animationDelay = `${retraso}s`;
+
+      fragmento.appendChild(destello);
     }
     contenedor.appendChild(fragmento);
   }
@@ -263,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!contDias || !contHoras || !contMin) return;
 
     // 📌 Fecha en que empezaron (02/07/26)
-    const fechaInicio = new Date("2026-07-02T00:00:00");
+    const fechaInicio = new Date("2026-07-22T21:17:00");
 
     function actualizar() {
       const ahora = new Date();
