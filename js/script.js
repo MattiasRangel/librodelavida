@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   crearPetalos();
   crearDestellos();
   iniciarBotonEsquivo();
+  iniciarSobreCarta();
   iniciarGaleria();
   iniciarRevelado();
   iniciarContador();
@@ -194,6 +195,56 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "carta.html?play=true";
       }, 1500);
     });
+  }
+
+  /* -----------------------------------------------------------------------
+     3b. SOBRE DE LA CARTA (solo existe en carta.html)
+     Al tocar la solapa, el sobre se abre y la carta se revela con
+     animación; después de abierta, el botón ya no vuelve a activarse.
+     ----------------------------------------------------------------------- */
+  function iniciarSobreCarta() {
+    const sobre = document.getElementById("sobreCarta");
+    const boton = document.getElementById("botonSobre");
+    if (!sobre || !boton) return;
+
+    function abrirSobre() {
+      if (sobre.classList.contains("abierto")) return;
+
+      // Medimos la altura real y completa de la carta (scrollHeight no se ve
+      // afectado por el recorte del sobre cerrado) y animamos hacia ese
+      // valor exacto, para que el texto nunca quede cortado sin importar
+      // el tamaño de pantalla o el largo del contenido.
+      const alturaCompleta = sobre.scrollHeight;
+      sobre.style.maxHeight = `${alturaCompleta}px`;
+
+      sobre.classList.add("abierto");
+      boton.setAttribute("aria-hidden", "true");
+      boton.tabIndex = -1;
+
+      if (window.navigator && window.navigator.vibrate) {
+        window.navigator.vibrate(15);
+      }
+
+      // Una vez terminada la animación de apertura, liberamos el límite de
+      // altura por completo para que el contenido jamás quede recortado
+      // (por ejemplo, si el usuario rota la pantalla o cambia el zoom).
+      sobre.addEventListener(
+        "transitionend",
+        function liberarAltura(evento) {
+          if (evento.propertyName === "max-height") {
+            sobre.style.maxHeight = "none";
+            sobre.removeEventListener("transitionend", liberarAltura);
+          }
+        }
+      );
+
+      // Lleva la vista suavemente hacia la carta ya abierta
+      setTimeout(() => {
+        sobre.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 300);
+    }
+
+    boton.addEventListener("click", abrirSobre);
   }
 
   /* -----------------------------------------------------------------------
