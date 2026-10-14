@@ -1,8 +1,6 @@
 /* =========================================================================
-   EL LIBRO DE LA VIDA — Carta interactiva
-   script.js — interacciones y lógica táctil
-   Este mismo archivo se usa en index.html y carta.html; cada bloque
-   comprueba que sus elementos existan antes de actuar.
+   EL LIBRO DE LA VIDA — Carta interactiva para Maivy
+   script.js — Optimizado para 60fps, interacciones 3D y efectos de scroll
    ========================================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,10 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
   crearPapelPicado();
   crearPetalos();
   crearDestellos();
+  iniciarBarraProgreso();
   iniciarBotonEsquivo();
   iniciarSobreCarta();
   iniciarGaleria();
-  iniciarRevelado();
+  iniciarLoteria3D();
+  iniciarAltarVelas();
+  iniciarPromesas();
+  iniciarReveladoScroll();
+  iniciarLightbox();
   iniciarContador();
   iniciarMusica();
 
@@ -24,13 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
     "resize",
     debounce(() => {
       crearPapelPicado();
-    }, 250)
+    }, 250),
+    { passive: true }
   );
 
   /* -----------------------------------------------------------------------
      1. BANNER DE PAPEL PICADO
-     Genera tantas "banderitas" como quepan en el ancho de pantalla, para
-     que el patrón siempre se vea completo sin desbordar el celular.
      ----------------------------------------------------------------------- */
   function crearPapelPicado() {
     const contenedor = document.getElementById("papelPicado");
@@ -40,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .querySelectorAll(".bandera")
       .forEach((bandera) => bandera.remove());
 
-    const anchoBandera = 40; // ancho + separación aproximada en px
+    const anchoBandera = 38;
     const cantidad = Math.ceil(window.innerWidth / anchoBandera) + 2;
 
     const fragmento = document.createDocumentFragment();
@@ -53,13 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* -----------------------------------------------------------------------
-     2. PÉTALOS DE CEMPASÚCHIL CAYENDO
+     2. PÉTALOS DE CEMPASÚCHIL Y DESTELLOS (Optimizado para GPU)
      ----------------------------------------------------------------------- */
   function crearPetalos() {
     const contenedor = document.getElementById("petalos");
     if (!contenedor || prefiereMenosMovimiento) return;
 
-    const cantidad = window.innerWidth < 380 ? 8 : 12;
+    const cantidad = window.innerWidth < 420 ? 8 : 12;
     const fragmento = document.createDocumentFragment();
 
     for (let i = 0; i < cantidad; i++) {
@@ -67,10 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
       petalo.className = "petalo";
 
       const izquierda = Math.random() * 100;
-      const duracion = 9 + Math.random() * 8;
+      const duracion = 10 + Math.random() * 7;
       const retraso = Math.random() * -duracion;
-      const deriva = Math.round(Math.random() * 120 - 60);
-      const tamano = 10 + Math.random() * 10;
+      const deriva = Math.round(Math.random() * 110 - 55);
+      const tamano = 10 + Math.random() * 8;
 
       petalo.style.left = `${izquierda}%`;
       petalo.style.width = `${tamano}px`;
@@ -84,16 +86,11 @@ document.addEventListener("DOMContentLoaded", () => {
     contenedor.appendChild(fragmento);
   }
 
-  /* -----------------------------------------------------------------------
-     2b. DESTELLOS DORADOS TITILANDO
-     Pequeñas chispas de luz repartidas por la pantalla, con tamaños,
-     posiciones y ritmos aleatorios para que se sientan orgánicas.
-     ----------------------------------------------------------------------- */
   function crearDestellos() {
     const contenedor = document.getElementById("destellos");
     if (!contenedor || prefiereMenosMovimiento) return;
 
-    const cantidad = window.innerWidth < 380 ? 14 : 22;
+    const cantidad = window.innerWidth < 420 ? 10 : 16;
     const fragmento = document.createDocumentFragment();
 
     for (let i = 0; i < cantidad; i++) {
@@ -101,17 +98,12 @@ document.addEventListener("DOMContentLoaded", () => {
       destello.className = "destello";
 
       const tamano = 2 + Math.random() * 3;
-      const izquierda = Math.random() * 100;
-      const arriba = Math.random() * 100;
-      const duracion = 2.2 + Math.random() * 3;
-      const retraso = Math.random() * -duracion;
-
       destello.style.width = `${tamano}px`;
       destello.style.height = `${tamano}px`;
-      destello.style.left = `${izquierda}%`;
-      destello.style.top = `${arriba}%`;
-      destello.style.animationDuration = `${duracion}s`;
-      destello.style.animationDelay = `${retraso}s`;
+      destello.style.left = `${Math.random() * 100}%`;
+      destello.style.top = `${Math.random() * 100}%`;
+      destello.style.animationDuration = `${2.4 + Math.random() * 2.5}s`;
+      destello.style.animationDelay = `${Math.random() * -4}s`;
 
       fragmento.appendChild(destello);
     }
@@ -119,24 +111,81 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* -----------------------------------------------------------------------
-     3. BOTÓN "NO" IMPOSIBLE DE PRESIONAR (solo existe en index.html)
-     En móviles no hay :hover, así que usamos "touchstart": el botón se
-     mueve en el instante en que el dedo lo toca, antes de completarse
-     el toque. También responde a mouseenter para escritorio.
+     3. EXPLOSIÓN DE CORAZONES Y FLORES DE CEMPASÚCHIL
+     ----------------------------------------------------------------------- */
+  function lanzarExplosionAmor(x, y) {
+    if (prefiereMenosMovimiento) return;
+    const simbolos = ["🩵", "🌼", "✨", "🕯️", "💖"];
+    const total = 16;
+    const fragmento = document.createDocumentFragment();
+
+    for (let i = 0; i < total; i++) {
+      const span = document.createElement("span");
+      span.className = "particula-amor";
+      span.textContent = simbolos[i % simbolos.length];
+
+      const angulo = (Math.PI * 2 * i) / total + (Math.random() * 0.4 - 0.2);
+      const distancia = 60 + Math.random() * 90;
+      const tx = Math.cos(angulo) * distancia;
+      const ty = Math.sin(angulo) * distancia - 30;
+      const rot = Math.round(Math.random() * 90 - 45);
+
+      span.style.left = `${x}px`;
+      span.style.top = `${y}px`;
+      span.style.setProperty("--tx", `${tx}px`);
+      span.style.setProperty("--ty", `${ty}px`);
+      span.style.setProperty("--rot", `${rot}deg`);
+
+      fragmento.appendChild(span);
+      setTimeout(() => span.remove(), 1200);
+    }
+    document.body.appendChild(fragmento);
+  }
+
+  /* -----------------------------------------------------------------------
+     4. BARRA DE PROGRESO DE LECTURA CON REQUESTANIMATIONFRAME
+     ----------------------------------------------------------------------- */
+  function iniciarBarraProgreso() {
+    const barra = document.getElementById("barraProgreso");
+    if (!barra) return;
+
+    let ticking = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const scrollTotal =
+              document.documentElement.scrollHeight - window.innerHeight;
+            const progreso =
+              scrollTotal > 0 ? Math.min(window.scrollY / scrollTotal, 1) : 0;
+            barra.style.transform = `scaleX(${progreso})`;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     5. BOTÓN "NO" ESQUIVO Y BOTÓN "SÍ" CON AUDIO Y PARTÍCULAS (index.html)
      ----------------------------------------------------------------------- */
   function iniciarBotonEsquivo() {
     const btnNo = document.getElementById("btnNo");
     const btnSi = document.getElementById("btnSi");
+    const audioInicio = document.getElementById("cancion");
     if (!btnNo || !btnSi) return;
 
     const mensajes = [
       "No",
-      "¿Segura/o?",
-      "Casi",
-      "Inténtalo de nuevo",
-      "No me alcanzas",
-      "¡Eso no cuenta!",
-      "Mejor toca el Sí",
+      "¿Segura, Maivy? 🥺",
+      "¡Casi me alcanzas!",
+      "Inténtalo de nuevo ✨",
+      "El destino dice que Sí 🩵",
+      "¡Ese botón no vale!",
+      "Mejor toca el Sí 🌼",
     ];
 
     let intentos = 0;
@@ -151,8 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const rect = btnNo.getBoundingClientRect();
       const ancho = rect.width || 160;
       const alto = rect.height || 56;
-      const margen = 16;
-      const margenSuperior = 90; // evita tapar el título
+      const margen = 18;
+      const margenSuperior = 80;
 
       const maxX = Math.max(window.innerWidth - ancho - margen, margen);
       const maxY = Math.max(window.innerHeight - alto - margen, margenSuperior);
@@ -164,174 +213,287 @@ document.addEventListener("DOMContentLoaded", () => {
       btnNo.style.top = `${y}px`;
 
       intentos++;
-      const indiceMensaje = Math.min(intentos - 1, mensajes.length - 1);
+      const indiceMensaje = Math.min(intentos, mensajes.length - 1);
       btnNo.textContent = mensajes[indiceMensaje];
 
-      // El botón "Sí" crece un poco cada intento, como invitación juguetona
-      const escala = Math.min(1 + intentos * 0.025, 1.2);
+      const escala = Math.min(1 + intentos * 0.03, 1.22);
       btnSi.style.transform = `scale(${escala})`;
 
-      if (window.navigator && window.navigator.vibrate) {
-        window.navigator.vibrate(12);
-      }
+      if (navigator.vibrate) navigator.vibrate(12);
     }
 
-    // Evento táctil principal: se activa apenas el dedo toca la pantalla
     btnNo.addEventListener("touchstart", moverBoton, { passive: false });
-    // Alternativa para dispositivos con mouse (no existe "touch" en desktop)
     btnNo.addEventListener("mouseenter", moverBoton);
-    // Salvaguarda: si por algún motivo se llega a hacer click, también huye
     btnNo.addEventListener("click", moverBoton);
 
-    btnSi.addEventListener("click", () => {
+    btnSi.addEventListener("click", (e) => {
+      const rect = btnSi.getBoundingClientRect();
+      lanzarExplosionAmor(
+        e.clientX || rect.left + rect.width / 2,
+        e.clientY || rect.top + rect.height / 2
+      );
 
-      // Hacemos que el botón cambie visualmente para que sepa que lo presionó
-      btnSi.textContent = "¡Sabía que dirías que sí! 🩵";
+      if (audioInicio) {
+        audioInicio.play().catch(() => {});
+      }
+
+      btnSi.innerHTML = "<span>¡Sabía que dirías que sí! 🩵</span>";
       btnSi.style.transform = "scale(1.1)";
 
-      // Esperamos 1.5 segundos para que escuche la música antes de cambiar de página
       setTimeout(() => {
-        // Le pasamos un parámetro (?play=true) a la siguiente página
         window.location.href = "carta.html?play=true";
-      }, 1500);
+      }, 1300);
     });
   }
 
   /* -----------------------------------------------------------------------
-     3b. SOBRE DE LA CARTA (solo existe en carta.html)
-     Al tocar la solapa, el sobre se abre y la carta se revela con
-     animación; después de abierta, el botón ya no vuelve a activarse.
+     6. APERTURA DEL SOBRE (carta.html)
      ----------------------------------------------------------------------- */
   function iniciarSobreCarta() {
     const sobre = document.getElementById("sobreCarta");
     const boton = document.getElementById("botonSobre");
     if (!sobre || !boton) return;
 
-    function abrirSobre() {
+    boton.addEventListener("click", (e) => {
       if (sobre.classList.contains("abierto")) return;
 
-      // Medimos la altura real y completa de la carta (scrollHeight no se ve
-      // afectado por el recorte del sobre cerrado) y animamos hacia ese
-      // valor exacto, para que el texto nunca quede cortado sin importar
-      // el tamaño de pantalla o el largo del contenido.
-      const alturaCompleta = sobre.scrollHeight;
-      sobre.style.maxHeight = `${alturaCompleta}px`;
-
-      sobre.classList.add("abierto");
-      boton.setAttribute("aria-hidden", "true");
-      boton.tabIndex = -1;
-
-      if (window.navigator && window.navigator.vibrate) {
-        window.navigator.vibrate(15);
-      }
-
-      // Una vez terminada la animación de apertura, liberamos el límite de
-      // altura por completo para que el contenido jamás quede recortado
-      // (por ejemplo, si el usuario rota la pantalla o cambia el zoom).
-      sobre.addEventListener(
-        "transitionend",
-        function liberarAltura(evento) {
-          if (evento.propertyName === "max-height") {
-            sobre.style.maxHeight = "none";
-            sobre.removeEventListener("transitionend", liberarAltura);
-          }
-        }
+      const rect = boton.getBoundingClientRect();
+      lanzarExplosionAmor(
+        e.clientX || rect.left + rect.width / 2,
+        e.clientY || rect.top + rect.height / 2
       );
 
-      // Lleva la vista suavemente hacia la carta ya abierta
-      setTimeout(() => {
-        sobre.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 300);
-    }
+      sobre.classList.add("abierto");
+      if (navigator.vibrate) navigator.vibrate(15);
 
-    boton.addEventListener("click", abrirSobre);
+      setTimeout(() => {
+        sobre.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 250);
+    });
   }
 
   /* -----------------------------------------------------------------------
-     4. GALERÍA CON SCROLL SNAP (solo existe en carta.html)
-     Puntos indicadores + animación de aparición al hacer scroll.
+     7. CARTAS DE LOTERÍA CON GIRO 3D
+     ----------------------------------------------------------------------- */
+  function iniciarLoteria3D() {
+    const cartas = document.querySelectorAll(".carta-loteria");
+    cartas.forEach((carta) => {
+      const alternar = () => {
+        carta.classList.toggle("volteada");
+        if (navigator.vibrate) navigator.vibrate(10);
+      };
+      carta.addEventListener("click", alternar);
+      carta.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          alternar();
+        }
+      });
+    });
+  }
+
+  /* -----------------------------------------------------------------------
+     8. ALTAR DE LAS VELAS INTERACTIVO
+     ----------------------------------------------------------------------- */
+  function iniciarAltarVelas() {
+    const velas = document.querySelectorAll(".vela-item");
+    const mensaje = document.getElementById("velaMensaje");
+    if (velas.length === 0 || !mensaje) return;
+
+    velas.forEach((vela) => {
+      vela.addEventListener("click", (e) => {
+        vela.classList.add("encendida");
+        const etiqueta = vela.querySelector(".vela-etiqueta");
+        if (etiqueta) etiqueta.textContent = "✨ Encendida ✨";
+
+        const rect = vela.getBoundingClientRect();
+        lanzarExplosionAmor(rect.left + rect.width / 2, rect.top + 20);
+
+        const deseo = vela.getAttribute("data-deseo");
+        const encendidas = document.querySelectorAll(".vela-item.encendida").length;
+
+        if (encendidas === velas.length) {
+          mensaje.innerHTML = `🕯️ <strong>¡Todas las velas brillan por nosotros!</strong><br>“${deseo}” 🩵`;
+        } else {
+          mensaje.textContent = `🕯️ “${deseo}”`;
+        }
+      });
+    });
+  }
+
+  /* -----------------------------------------------------------------------
+     9. PROMESAS INTERACTIVAS
+     ----------------------------------------------------------------------- */
+  function iniciarPromesas() {
+    const promesas = document.querySelectorAll(".promesa-item");
+    const juramento = document.getElementById("juramentoFinal");
+    if (promesas.length === 0) return;
+
+    promesas.forEach((item) => {
+      const sellar = (e) => {
+        item.classList.toggle("sellada");
+        const icono = item.querySelector(".promesa-check");
+        if (icono) {
+          icono.textContent = item.classList.contains("sellada") ? "🩵" : "🕯️";
+        }
+
+        const totalSelladas = document.querySelectorAll(".promesa-item.sellada").length;
+        if (juramento && totalSelladas === promesas.length) {
+          juramento.classList.add("visible");
+          const rect = item.getBoundingClientRect();
+          lanzarExplosionAmor(
+            e.clientX || rect.left + rect.width / 2,
+            e.clientY || rect.top
+          );
+        }
+      };
+
+      item.addEventListener("click", sellar);
+      item.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          sellar(e);
+        }
+      });
+    });
+  }
+
+  /* -----------------------------------------------------------------------
+     10. GALERÍA CON SCROLL SNAP Y BOTONES
      ----------------------------------------------------------------------- */
   function iniciarGaleria() {
     const galeria = document.getElementById("galeria");
     const contenedorPuntos = document.getElementById("galeriaPuntos");
+    const btnIzq = document.getElementById("btnGaleriaIzq");
+    const btnDer = document.getElementById("btnGaleriaDer");
     if (!galeria || !contenedorPuntos) return;
 
-    const items = Array.from(galeria.querySelectorAll(".galeria__item"));
-    if (items.length === 0) return;
-
-    // Crear puntos indicadores
-    items.forEach((_, i) => {
-      const punto = document.createElement("span");
-      punto.className = "punto" + (i === 0 ? " activo" : "");
-      contenedorPuntos.appendChild(punto);
-    });
-    const puntos = Array.from(contenedorPuntos.children);
-
-    // Aparición suave de cada foto al entrar en pantalla
-    if ("IntersectionObserver" in window) {
-      const observadorAparicion = new IntersectionObserver(
-        (entradas) => {
-          entradas.forEach((entrada) => {
-            if (entrada.isIntersecting) {
-              entrada.target.classList.add("visible");
-              observadorAparicion.unobserve(entrada.target);
-            }
-          });
-        },
-        { threshold: 0.25 }
+    function obtenerItemsVisibles() {
+      return Array.from(galeria.querySelectorAll(".galeria__item")).filter(
+        (item) => document.body.contains(item)
       );
-      items.forEach((item) => observadorAparicion.observe(item));
-    } else {
-      items.forEach((item) => item.classList.add("visible"));
     }
 
-    // Sincroniza el punto activo con la foto centrada al deslizar
+    function reconstruirPuntos() {
+      contenedorPuntos.innerHTML = "";
+      const items = obtenerItemsVisibles();
+      items.forEach((_, i) => {
+        const punto = document.createElement("span");
+        punto.className = "punto" + (i === 0 ? " activo" : "");
+        contenedorPuntos.appendChild(punto);
+      });
+    }
+
+    reconstruirPuntos();
+    setTimeout(reconstruirPuntos, 600);
+
+    if (btnIzq) {
+      btnIzq.addEventListener("click", () => {
+        galeria.scrollBy({ left: -260, behavior: "smooth" });
+      });
+    }
+    if (btnDer) {
+      btnDer.addEventListener("click", () => {
+        galeria.scrollBy({ left: 260, behavior: "smooth" });
+      });
+    }
+
+    let ticking = false;
     galeria.addEventListener(
       "scroll",
-      debounce(() => {
-        const centroGaleria = galeria.scrollLeft + galeria.clientWidth / 2;
-        let indiceCercano = 0;
-        let distanciaMinima = Infinity;
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const items = obtenerItemsVisibles();
+            const puntos = Array.from(contenedorPuntos.children);
+            const centroGaleria = galeria.scrollLeft + galeria.clientWidth / 2;
+            let indiceCercano = 0;
+            let distanciaMinima = Infinity;
 
-        items.forEach((item, i) => {
-          const centroItem = item.offsetLeft + item.clientWidth / 2;
-          const distancia = Math.abs(centroGaleria - centroItem);
-          if (distancia < distanciaMinima) {
-            distanciaMinima = distancia;
-            indiceCercano = i;
-          }
-        });
+            items.forEach((item, i) => {
+              const centroItem = item.offsetLeft + item.clientWidth / 2;
+              const distancia = Math.abs(centroGaleria - centroItem);
+              if (distancia < distanciaMinima) {
+                distanciaMinima = distancia;
+                indiceCercano = i;
+              }
+            });
 
-        puntos.forEach((p, i) =>
-          p.classList.toggle("activo", i === indiceCercano)
-        );
-      }, 80)
+            puntos.forEach((p, i) =>
+              p.classList.toggle("activo", i === indiceCercano)
+            );
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+      { passive: true }
     );
   }
 
   /* -----------------------------------------------------------------------
-     5. APARICIÓN SUAVE DE LA LOTERÍA, EL CONTADOR Y LAS PROMESAS
-     (solo existe en carta.html)
+     11. VISOR LIGHTBOX (AMPLIAR FOTOS AL TOCARLAS)
      ----------------------------------------------------------------------- */
-  function iniciarRevelado() {
-    const elementos = document.querySelectorAll(
-      ".carta-loteria, .contador__bloque, .lista-promesas"
-    );
-    if (elementos.length === 0) return;
+  function iniciarLightbox() {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    const btnCerrar = document.getElementById("lightboxCerrar");
+    if (!lightbox || !lightboxImg) return;
 
-    elementos.forEach((el) => el.classList.add("revelar"));
+    const selectoresFotos =
+      ".galeria__item img, .cinta-foto img, .polaroid-scroll__marco img";
+
+    document.addEventListener("click", (e) => {
+      const img = e.target.closest(selectoresFotos);
+      if (!img) return;
+
+      const src = img.getAttribute("src");
+      if (!src) return;
+
+      const contenedor = img.closest("figure, .polaroid-scroll__marco, .cinta-foto");
+      const textoCaption =
+        contenedor?.querySelector("figcaption, .polaroid-scroll__caption")
+          ?.textContent || "Maivy & Mattias 🩵";
+
+      lightboxImg.src = src;
+      if (lightboxCaption) lightboxCaption.textContent = textoCaption;
+      lightbox.classList.add("activo");
+      lightbox.setAttribute("aria-hidden", "false");
+    });
+
+    function cerrar() {
+      lightbox.classList.remove("activo");
+      lightbox.setAttribute("aria-hidden", "true");
+    }
+
+    if (btnCerrar) btnCerrar.addEventListener("click", cerrar);
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) cerrar();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") cerrar();
+    });
+  }
+
+  /* -----------------------------------------------------------------------
+     12. REVELADO SUAVE AL HACER SCROLL (IntersectionObserver)
+     ----------------------------------------------------------------------- */
+  function iniciarReveladoScroll() {
+    const elementos = document.querySelectorAll(".revelar-scroll");
+    if (elementos.length === 0) return;
 
     if ("IntersectionObserver" in window) {
       const observador = new IntersectionObserver(
         (entradas) => {
-          entradas.forEach((entrada, i) => {
+          entradas.forEach((entrada) => {
             if (entrada.isIntersecting) {
-              setTimeout(() => entrada.target.classList.add("visible"), i * 60);
+              entrada.target.classList.add("visible");
               observador.unobserve(entrada.target);
             }
           });
         },
-        { threshold: 0.2 }
+        { threshold: 0.18 }
       );
       elementos.forEach((el) => observador.observe(el));
     } else {
@@ -340,38 +502,41 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* -----------------------------------------------------------------------
-     6. CONTADOR DE TIEMPO JUNTOS (solo existe en carta.html)
+     13. CONTADOR EN TIEMPO REAL CON SEGUNDOS
      ----------------------------------------------------------------------- */
   function iniciarContador() {
     const contDias = document.getElementById("contDias");
     const contHoras = document.getElementById("contHoras");
     const contMin = document.getElementById("contMin");
+    const contSeg = document.getElementById("contSeg");
     if (!contDias || !contHoras || !contMin) return;
 
-    // 📌 Fecha en que empezaron (02/07/26)
     const fechaInicio = new Date("2026-07-22T21:17:00");
 
     function actualizar() {
       const ahora = new Date();
-      let diferencia = Math.max(0, ahora - fechaInicio);
+      let diferencia = Math.max(0, Math.abs(ahora - fechaInicio));
 
       const dias = Math.floor(diferencia / 86400000);
       diferencia -= dias * 86400000;
       const horas = Math.floor(diferencia / 3600000);
       diferencia -= horas * 3600000;
       const minutos = Math.floor(diferencia / 60000);
+      diferencia -= minutos * 60000;
+      const segundos = Math.floor(diferencia / 1000);
 
       contDias.textContent = dias;
       contHoras.textContent = String(horas).padStart(2, "0");
       contMin.textContent = String(minutos).padStart(2, "0");
+      if (contSeg) contSeg.textContent = String(segundos).padStart(2, "0");
     }
 
     actualizar();
-    setInterval(actualizar, 30000);
+    setInterval(actualizar, 1000);
   }
 
   /* -----------------------------------------------------------------------
-     7. BOTÓN DE MÚSICA DISCRETO (solo existe en carta.html)
+     14. MÚSICA DE FONDO (SOPORTA ?play=true DESDE INDEX.HTML)
      ----------------------------------------------------------------------- */
   function iniciarMusica() {
     const audio = document.getElementById("audioFondo");
@@ -382,38 +547,55 @@ document.addEventListener("DOMContentLoaded", () => {
     let sonando = false;
     let avisoTimeout;
 
+    function actualizarEstadoBoton(activo) {
+      sonando = activo;
+      boton.classList.toggle("sonando", activo);
+      boton.setAttribute("aria-pressed", String(activo));
+      boton.setAttribute(
+        "aria-label",
+        activo ? "Pausar música" : "Reproducir música"
+      );
+    }
+
     function mostrarAviso() {
       if (!aviso) return;
       aviso.classList.add("visible");
       clearTimeout(avisoTimeout);
-      avisoTimeout = setTimeout(() => aviso.classList.remove("visible"), 3800);
+      avisoTimeout = setTimeout(() => aviso.classList.remove("visible"), 4000);
+    }
+
+    async function intentarReproducir() {
+      try {
+        await audio.play();
+        actualizarEstadoBoton(true);
+      } catch (err) {
+        mostrarAviso();
+      }
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("play") === "true") {
+      intentarReproducir();
+      // Si el navegador móvil pide un toque en la página nueva, arranca al primer toque
+      const desbloquearAlToque = () => {
+        if (!sonando) intentarReproducir();
+        document.removeEventListener("click", desbloquearAlToque);
+      };
+      document.addEventListener("click", desbloquearAlToque, { once: true });
     }
 
     boton.addEventListener("click", async () => {
       if (!sonando) {
-        try {
-          await audio.play();
-          sonando = true;
-          boton.classList.add("sonando");
-          boton.setAttribute("aria-pressed", "true");
-          boton.setAttribute("aria-label", "Pausar música");
-        } catch (error) {
-          mostrarAviso();
-        }
+        await intentarReproducir();
       } else {
         audio.pause();
-        sonando = false;
-        boton.classList.remove("sonando");
-        boton.setAttribute("aria-pressed", "false");
-        boton.setAttribute("aria-label", "Reproducir música");
+        actualizarEstadoBoton(false);
       }
     });
-
-    audio.addEventListener("error", mostrarAviso);
   }
 
   /* -----------------------------------------------------------------------
-     UTILIDAD: debounce simple para eventos de scroll / resize
+     UTILIDAD: DEBOUNCE
      ----------------------------------------------------------------------- */
   function debounce(fn, espera) {
     let temporizador;
@@ -422,6 +604,4 @@ document.addEventListener("DOMContentLoaded", () => {
       temporizador = setTimeout(() => fn(...args), espera);
     };
   }
-
-  
 });

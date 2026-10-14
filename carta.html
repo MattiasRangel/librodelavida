@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#2b160d" />
-  <title>Para Maivy 🩵</title>
+  <meta name="theme-color" content="#1e0d07" />
+  <title>Para Maivy — Nuestra Historia 🩵</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Dancing+Script:wght@600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
     rel="stylesheet"
   />
 
@@ -17,99 +17,263 @@
 </head>
 <body class="pagina-carta">
 
-  <!-- Banner decorativo de papel picado, se llena por JS -->
+  <!-- Barra de progreso de lectura superior -->
+  <div class="barra-progreso" id="barraProgreso" aria-hidden="true"></div>
+
+  <!-- Fondo fijo optimizado por GPU -->
+  <div class="fondo-escenario" aria-hidden="true"></div>
+
+  <!-- Banner decorativo de papel picado -->
   <div class="papel-picado" id="papelPicado" aria-hidden="true">
     <div class="papel-picado__hilo"></div>
   </div>
 
-  <!-- Pétalos de cempasúchil cayendo (decorativo) -->
+  <!-- Pétalos y destellos -->
   <div class="petalos" id="petalos" aria-hidden="true"></div>
-
-  <!-- Destellos dorados titilando (decorativo) -->
   <div class="destellos" id="destellos" aria-hidden="true"></div>
 
-  <!-- Gifs decorativos alrededor de la página (no como galería, solo ambiente) -->
+  <!-- Gifs decorativos superiores -->
   <div class="franja-decorativa" aria-hidden="true">
-    <span class="medallon-gif"><img src="assets/gif1.gif" alt="" loading="lazy" /></span>
-    <span class="medallon-gif"><img src="assets/gif2.gif" alt="" loading="lazy" /></span>
+    <span class="medallon-gif"><img src="assets/gif1.gif" alt="" loading="lazy" decoding="async" /></span>
+    <span class="medallon-gif"><img src="assets/gif2.gif" alt="" loading="lazy" decoding="async" /></span>
   </div>
 
-  <header class="encabezado-carta">
-    <p class="pregunta__eyebrow">✨🕯️✨</p>
+  <header class="encabezado-carta contenedor">
+    <p class="pregunta__eyebrow">✨🕯️ El Libro de Nuestra Vida 🕯️✨</p>
     <h1 class="encabezado-carta__titulo">Para Maivy</h1>
-  </header>
-
-  <!-- ============================= CELEBRACIÓN ============================= -->
-  <section class="contenedor">
     <div class="celebracion">
       <p class="celebracion__texto">¡Dijiste que sí! 🩵</p>
-      <p class="celebracion__sub">Y ahora quiero contarte todo lo que siento</p>
+      <p class="celebracion__sub">Y ahora quiero contarte todo lo que guardo en el alma</p>
+    </div>
+  </header>
+
+  <!-- ============================= CINTA DE RECUERDOS (AUTO-SCROLL INFINITO) ============================= -->
+  <section class="seccion-cinta" aria-label="Cinta de fotos">
+    <div class="cinta-scroll" id="cintaScroll">
+      <div class="cinta-scroll__pista">
+        <div class="cinta-foto"><img src="assets/foto11.png" alt="Recuerdo 1" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto"><img src="assets/foto2.jpg" alt="Recuerdo 2" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto"><img src="assets/foto1.jpg" alt="Recuerdo 3" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto"><img src="assets/foto3.jpg" alt="Recuerdo 4" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto"><img src="assets/foto5.jpg" alt="Recuerdo 5" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto"><img src="assets/foto6.jpg" alt="Recuerdo 6" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto"><img src="assets/foto7.jpg" alt="Recuerdo 7" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto"><img src="assets/foto4.jpg" alt="Recuerdo 8" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto"><img src="assets/foto9.jpg" alt="Recuerdo 9" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto"><img src="assets/foto8.jpg" alt="Recuerdo 10" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto"><img src="assets/foto10.jpg" alt="Recuerdo 11" loading="lazy" decoding="async" /></div>
+        <!-- Duplicado para efecto infinito perfecto -->
+        <div class="cinta-foto" aria-hidden="true"><img src="assets/foto11.png" alt="" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto" aria-hidden="true"><img src="assets/foto2.jpg" alt="" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto" aria-hidden="true"><img src="assets/foto1.jpg" alt="" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto" aria-hidden="true"><img src="assets/foto3.jpg" alt="" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto" aria-hidden="true"><img src="assets/foto5.jpg" alt="" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto" aria-hidden="true"><img src="assets/foto6.jpg" alt="" loading="lazy" decoding="async" /></div>
+      </div>
+    </div>
+    <p class="ayuda-toque">✨ Toca cualquier foto de la página para verla en grande ✨</p>
+  </section>
+
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
+
+  <!-- ============================= CARTA INTERACTIVA ============================= -->
+  <section class="contenedor">
+    <div class="sobre-contenedor" id="sobreCarta">
+      <!-- Botón del sobre cerrado -->
+      <button type="button" class="sobre-tapa" id="botonSobre" aria-label="Toca para abrir la carta">
+        <span class="sobre-tapa__solapa" aria-hidden="true"></span>
+        <span class="sobre-tapa__sello">🩵</span>
+        <span class="sobre-tapa__texto">Toca el sello para abrir tu carta</span>
+        <span class="sobre-tapa__chispas">✨ Escrita con todo mi amor ✨</span>
+      </button>
+
+      <!-- Contenido desplegable optimizado con CSS Grid -->
+      <div class="sobre-desplegable">
+        <div class="sobre-desplegable__interno">
+          <article class="pergamino" id="pergamino">
+            <span class="pergamino__brillo" aria-hidden="true"></span>
+            <div class="pergamino__esquina pergamino__esquina--tl" aria-hidden="true">✦</div>
+            <div class="pergamino__esquina pergamino__esquina--tr" aria-hidden="true">✦</div>
+            <div class="pergamino__esquina pergamino__esquina--bl" aria-hidden="true">✦</div>
+            <div class="pergamino__esquina pergamino__esquina--br" aria-hidden="true">✦</div>
+
+            <p class="pergamino__saludo">Maivy,</p>
+            <p class="pergamino__para">
+              Hace mucho tiempo no sentía algo tan genuino, ni encontraba a alguien con quien
+              enamorarme de verdad y dejar salir al niño que llevo dentro. Nadie me había dado
+              tanta seguridad para expresar lo que siento con tranquilidad, ni había valorado
+              así mis sentimientos.
+            </p>
+            <p class="pergamino__para">
+              Cuando te vi, no solo descubrí a la mujer más hermosa. En tus ojos encontré una
+              paz y una estabilidad que me atraparon, y me despertaste unas ganas inmensas de
+              conocer a la niña tan dulce que llevas dentro.
+            </p>
+            <p class="pergamino__para">
+              Lo que he sentido en tan poco tiempo es increíble. Es como si te conociera de
+              otra vida, porque tantas casualidades en nuestras emociones, familias y gustos
+              no pueden ser coincidencia. Haber conectado así me convence de que estaba
+              destinado a encontrarte.
+            </p>
+            <p class="pergamino__para">
+              Ahora que eres mi novia, por fin tengo mi lugar seguro. Siempre quise estar con
+              alguien como tú. Voy a luchar por nosotros y siento que este amor no se acabará
+              nunca. Te quiero mucho, y espero que este sea el comienzo de algo para toda la
+              vida.
+            </p>
+            <p class="pergamino__firma">Tuyo, con todo mi corazón</p>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="divisor" aria-hidden="true"><span>✨</span><span>✦</span><span>✨</span></div>
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- ============================= CARTA ============================= -->
-  <section class="contenedor">
-    <div class="sobre-carta" id="sobreCarta">
-      <article class="pergamino" id="pergamino">
-        <span class="pergamino__brillo" aria-hidden="true"></span>
-        <p class="pergamino__saludo">Maivy,</p>
-        <p class="pergamino__para">
-          Hace mucho tiempo no sentía algo tan genuino, ni encontraba a alguien con quien
-          enamorarme de verdad y dejar salir al niño que llevo dentro. Nadie me había dado
-          tanta seguridad para expresar lo que siento con tranquilidad, ni había valorado
-          así mis sentimientos.
-        </p>
-        <p class="pergamino__para">
-          Cuando te vi, no solo descubrí a la mujer más hermosa. En tus ojos encontré una
-          paz y una estabilidad que me atraparon, y me despertaste unas ganas inmensas de
-          conocer a la niña tan dulce que llevas dentro.
-        </p>
-        <p class="pergamino__para">
-          Lo que he sentido en tan poco tiempo es increíble. Es como si te conociera de
-          otra vida, porque tantas casualidades en nuestras emociones, familias y gustos
-          no pueden ser coincidencia. Haber conectado así me convence de que estaba
-          destinado a encontrarte.
-        </p>
-        <p class="pergamino__para">
-          Ahora que eres mi novia, por fin tengo mi lugar seguro. Siempre quise estar con
-          alguien como tú. Voy a luchar por nosotros y siento que este amor no se acabará
-          nunca. Te quiero mucho, y espero que este sea el comienzo de algo para toda la
-          vida.
-        </p>
-        <p class="pergamino__firma">Tuyo, con todo mi corazón</p>
+  <!-- ============================= CAMINO DE RECUERDOS (SCROLL ANIMADO VERTICAL) ============================= -->
+  <section class="seccion-camino contenedor">
+    <h2 class="seccion-titulo">Momentos que iluminan mi vida</h2>
+    <p class="seccion-subtitulo">Desliza hacia abajo para recorrer nuestra historia</p>
+
+    <div class="camino-scroll">
+      <article class="polaroid-scroll revelar-scroll" data-direccion="izquierda">
+        <div class="polaroid-scroll__marco">
+          <img src="assets/foto11.png" alt="Nosotros" loading="lazy" decoding="async" />
+          <span class="polaroid-scroll__caption">Mi lugar favorito siempre eres tú 🩵</span>
+        </div>
       </article>
 
-      <button type="button" class="sobre-tapa" id="botonSobre" aria-label="Toca para abrir la carta">
-        <span class="sobre-tapa__sello">🩵</span>
-        <span class="sobre-tapa__texto">Toca para leer la carta</span>
-        <span class="sobre-tapa__chispas">✨ ✦ ✨</span>
-      </button>
+      <article class="polaroid-scroll revelar-scroll" data-direccion="derecha">
+        <div class="polaroid-scroll__marco">
+          <img src="assets/foto2.jpg" alt="Nosotros" loading="lazy" decoding="async" />
+          <span class="polaroid-scroll__caption">La paz que encontré en tu mirada ✨</span>
+        </div>
+      </article>
+
+      <article class="polaroid-scroll revelar-scroll" data-direccion="izquierda">
+        <div class="polaroid-scroll__marco">
+          <img src="assets/foto5.jpg" alt="Nosotros" loading="lazy" decoding="async" />
+          <span class="polaroid-scroll__caption">Como si nos conociéramos de otra vida 🕯️</span>
+        </div>
+      </article>
+
+      <article class="polaroid-scroll revelar-scroll" data-direccion="derecha">
+        <div class="polaroid-scroll__marco">
+          <img src="assets/foto9.jpg" alt="Nosotros" loading="lazy" decoding="async" />
+          <span class="polaroid-scroll__caption">Contigo todo es más bonito 🌼</span>
+        </div>
+      </article>
     </div>
   </section>
 
-  <div class="divisor" aria-hidden="true"><span>✨</span><span>✦</span><span>✨</span></div>
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- ============================= RAZONES (estilo lotería) ============================= -->
+  <!-- ============================= RAZONES (LOTERÍA INTERACTIVA 3D) ============================= -->
   <section class="seccion-razones contenedor">
-    <h2 class="seccion-titulo">Razones para quererte</h2>
+    <h2 class="seccion-titulo">La Lotería de Nuestro Amor</h2>
+    <p class="seccion-subtitulo">Toca cada carta para voltearla y descubrir un secreto</p>
+
     <div class="loteria">
-      <div class="carta-loteria"><span class="carta-loteria__num">01</span><span class="carta-loteria__icono">🩵</span><p>Por la paz que transmites.</p></div>
-      <div class="carta-loteria"><span class="carta-loteria__num">02</span><span class="carta-loteria__icono">🩵</span><p>Por lo tierna que eres</p></div>
-      <div class="carta-loteria"><span class="carta-loteria__num">03</span><span class="carta-loteria__icono">🩵</span><p>por la seguridad que me das</p></div>
-      <div class="carta-loteria"><span class="carta-loteria__num">04</span><span class="carta-loteria__icono">🩵</span><p>Por las mil casualidades que nos unieron</p></div>
-      <div class="carta-loteria"><span class="carta-loteria__num">05</span><span class="carta-loteria__icono">🩵</span><p>Por la hermosa persona que eres.</p></div>
-      <div class="carta-loteria"><span class="carta-loteria__num">06</span><span class="carta-loteria__icono">🩵</span><p>Porque siempre quise tenerte en mi vida.</p></div>
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 1: Toca para voltear">
+        <div class="carta-loteria__inner">
+          <div class="carta-loteria__frente">
+            <span class="carta-loteria__num">01</span>
+            <span class="carta-loteria__icono">🕊️</span>
+            <p class="carta-loteria__titulo">La Paz</p>
+            <p>Por la paz tan inmensa que me transmites.</p>
+            <span class="carta-loteria__toque">Toca para girar ↻</span>
+          </div>
+          <div class="carta-loteria__dorso">
+            <p>Cuando estoy contigo el mundo se calma y todo tiene sentido. 🩵</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 2: Toca para voltear">
+        <div class="carta-loteria__inner">
+          <div class="carta-loteria__frente">
+            <span class="carta-loteria__num">02</span>
+            <span class="carta-loteria__icono">🌷</span>
+            <p class="carta-loteria__titulo">La Ternura</p>
+            <p>Por lo tierna y dulce que eres conmigo.</p>
+            <span class="carta-loteria__toque">Toca para girar ↻</span>
+          </div>
+          <div class="carta-loteria__dorso">
+            <p>Amo a la niña tan dulce que llevas dentro y prometo cuidarla siempre. ✨</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 3: Toca para voltear">
+        <div class="carta-loteria__inner">
+          <div class="carta-loteria__frente">
+            <span class="carta-loteria__num">03</span>
+            <span class="carta-loteria__icono">🏡</span>
+            <p class="carta-loteria__titulo">El Refugio</p>
+            <p>Por la seguridad que me das cada día.</p>
+            <span class="carta-loteria__toque">Toca para girar ↻</span>
+          </div>
+          <div class="carta-loteria__dorso">
+            <p>Contigo puedo abrir mi corazón sin miedo a nada. Eres mi lugar seguro. 🕯️</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 4: Toca para voltear">
+        <div class="carta-loteria__inner">
+          <div class="carta-loteria__frente">
+            <span class="carta-loteria__num">04</span>
+            <span class="carta-loteria__icono">✨</span>
+            <p class="carta-loteria__titulo">El Destino</p>
+            <p>Por las mil casualidades que nos unieron.</p>
+            <span class="carta-loteria__toque">Toca para girar ↻</span>
+          </div>
+          <div class="carta-loteria__dorso">
+            <p>No fue suerte, nuestras almas ya sabían que tenían que encontrarse. 🩵</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 5: Toca para voltear">
+        <div class="carta-loteria__inner">
+          <div class="carta-loteria__frente">
+            <span class="carta-loteria__num">05</span>
+            <span class="carta-loteria__icono">👑</span>
+            <p class="carta-loteria__titulo">La Belleza</p>
+            <p>Por la hermosa persona que eres por dentro y por fuera.</p>
+            <span class="carta-loteria__toque">Toca para girar ↻</span>
+          </div>
+          <div class="carta-loteria__dorso">
+            <p>Tus ojos y tu sonrisa son mi paisaje favorito en todo el universo. 🌼</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 6: Toca para voltear">
+        <div class="carta-loteria__inner">
+          <div class="carta-loteria__frente">
+            <span class="carta-loteria__num">06</span>
+            <span class="carta-loteria__icono">🩵</span>
+            <p class="carta-loteria__titulo">El Deseo</p>
+            <p>Porque siempre quise tenerte en mi vida.</p>
+            <span class="carta-loteria__toque">Toca para girar ↻</span>
+          </div>
+          <div class="carta-loteria__dorso">
+            <p>Eres todo lo que algún día pedí y mucho más de lo que imaginé. ✨</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="divisor" aria-hidden="true"><span>✨</span><span>✦</span><span>✨</span></div>
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- ============================= GALERÍA DE FOTOS ============================= -->
+  <!-- ============================= GALERÍA CARRUSEL 3D ============================= -->
   <section class="seccion-galeria">
-    <h2 class="seccion-titulo">Nuestros recuerdos</h2>
+    <h2 class="seccion-titulo">Nuestro Álbum Dorado</h2>
+    <p class="seccion-subtitulo">Desliza para explorar cada foto o tócala para ampliarla</p>
 
+<<<<<<< HEAD
     <div class="galeria" id="galeria">
       <figure class="galeria__item">
         <img src="assets/foto11.png" alt="Foto 1 de nosotros" loading="lazy" />
@@ -147,70 +311,218 @@
       <figure class="galeria__item">
         <img src="assets/foto12.jpg" alt="Foto 12 de nosotros" loading="lazy" />
       </figure>
+=======
+    <div class="galeria-wrapper">
+      <button type="button" class="galeria-flecha galeria-flecha--izq" id="btnGaleriaIzq" aria-label="Foto anterior">❮</button>
+
+      <div class="galeria" id="galeria">
+        <figure class="galeria__item">
+          <img src="assets/foto11.png" alt="Nuestro recuerdo 1" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Nuestro comienzo 🩵</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto2.jpg" alt="Nuestro recuerdo 2" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Tu sonrisa hermosa ✨</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto1.jpg" alt="Nuestro recuerdo 3" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Momentos únicos 🕯️</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto3.jpg" alt="Nuestro recuerdo 4" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Juntos siempre 🌼</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto5.jpg" alt="Nuestro recuerdo 5" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Mi persona favorita 🩵</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto6.jpg" alt="Nuestro recuerdo 6" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Pura felicidad ✨</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto7.jpg" alt="Nuestro recuerdo 7" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Cómplices de vida 🕯️</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto4.jpg" alt="Nuestro recuerdo 8" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Miradas que hablan 🩵</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto9.jpg" alt="Nuestro recuerdo 9" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Mi lugar seguro 🌼</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto8.jpg" alt="Nuestro recuerdo 10" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Para toda la vida ✨</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto10.jpg" alt="Nuestro recuerdo 11" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Te quiero tanto 🩵</figcaption>
+        </figure>
+
+        <!-- FOTOS ADICIONALES (foto12 a foto16):
+             Si las agregas a la carpeta assets/, aparecerán automáticamente.
+             Si aún no existen, el atributo onerror las oculta sin mostrar error. -->
+        <figure class="galeria__item foto-opcional">
+          <img src="assets/foto12.jpg" alt="Nuestro recuerdo 12" loading="lazy" decoding="async" onerror="this.closest('.foto-opcional').remove()" />
+          <figcaption class="galeria__caption">Un recuerdo más juntos 🩵</figcaption>
+        </figure>
+        <figure class="galeria__item foto-opcional">
+          <img src="assets/foto13.jpeg" alt="Nuestro recuerdo 13" loading="lazy" decoding="async" onerror="this.closest('.foto-opcional').remove()" />
+          <figcaption class="galeria__caption">Inolvidable contigo ✨</figcaption>
+        </figure>
+        <figure class="galeria__item foto-opcional">
+          <img src="assets/foto14.jpg" alt="Nuestro recuerdo 14" loading="lazy" decoding="async" onerror="this.closest('.foto-opcional').remove()" />
+          <figcaption class="galeria__caption">Siempre tú 🕯️</figcaption>
+        </figure>
+        <figure class="galeria__item foto-opcional">
+          <img src="assets/foto15.jpg" alt="Nuestro recuerdo 15" loading="lazy" decoding="async" onerror="this.closest('.foto-opcional').remove()" />
+          <figcaption class="galeria__caption">Nuestro amor 🌼</figcaption>
+        </figure>
+        <figure class="galeria__item foto-opcional">
+          <img src="assets/foto16.jpg" alt="Nuestro recuerdo 16" loading="lazy" decoding="async" onerror="this.closest('.foto-opcional').remove()" />
+          <figcaption class="galeria__caption">Maivy &amp; Mattias 🩵</figcaption>
+        </figure>
+      </div>
+
+      <button type="button" class="galeria-flecha galeria-flecha--der" id="btnGaleriaDer" aria-label="Foto siguiente">❯</button>
+
     </div>
 
     <div class="galeria__puntos" id="galeriaPuntos" aria-hidden="true"></div>
   </section>
 
-  <div class="divisor" aria-hidden="true"><span>✨</span><span>✦</span><span>✨</span></div>
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
+
+  <!-- ============================= NUEVO: ALTAR DE LAS VELAS (INTERACTIVO) ============================= -->
+  <section class="seccion-velas contenedor">
+    <h2 class="seccion-titulo">Las Velas de Nuestro Destino</h2>
+    <p class="seccion-subtitulo">Toca cada vela para encender su luz y revelar un deseo</p>
+
+    <div class="altar-velas">
+      <button type="button" class="vela-item" data-deseo="Que nunca nos falten las risas, la complicidad ni los abrazos largos.">
+        <span class="vela-llama" aria-hidden="true"></span>
+        <span class="vela-cuerpo">
+          <span class="vela-corazon">🩵</span>
+        </span>
+        <span class="vela-etiqueta">Toca para encender</span>
+      </button>
+
+      <button type="button" class="vela-item" data-deseo="Que sigamos siendo el refugio seguro donde nuestros corazones descansan en paz.">
+        <span class="vela-llama" aria-hidden="true"></span>
+        <span class="vela-cuerpo">
+          <span class="vela-corazon">✨</span>
+        </span>
+        <span class="vela-etiqueta">Toca para encender</span>
+      </button>
+
+      <button type="button" class="vela-item" data-deseo="Que esta historia que escribimos juntos dure en esta vida y en todas las que vengan.">
+        <span class="vela-llama" aria-hidden="true"></span>
+        <span class="vela-cuerpo">
+          <span class="vela-corazon">🌼</span>
+        </span>
+        <span class="vela-etiqueta">Toca para encender</span>
+      </button>
+    </div>
+
+    <p class="vela-mensaje" id="velaMensaje" aria-live="polite">
+      🕯️ Enciende las tres velas para iluminar nuestro camino...
+    </p>
+  </section>
+
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
   <!-- ============================= CONTADOR DE TIEMPO JUNTOS ============================= -->
   <section class="seccion-contador contenedor">
     <h2 class="seccion-titulo">Nuestro tiempo juntos</h2>
     <div class="contador" id="contador" aria-live="polite">
-      <div class="contador__bloque">
+      <div class="contador__bloque revelar-scroll">
         <span class="contador__numero" id="contDias">0</span>
         <span class="contador__etiqueta">días</span>
       </div>
-      <div class="contador__bloque">
+      <div class="contador__bloque revelar-scroll">
         <span class="contador__numero" id="contHoras">00</span>
         <span class="contador__etiqueta">horas</span>
       </div>
-      <div class="contador__bloque">
+      <div class="contador__bloque revelar-scroll">
         <span class="contador__numero" id="contMin">00</span>
         <span class="contador__etiqueta">min</span>
       </div>
+      <div class="contador__bloque revelar-scroll">
+        <span class="contador__numero" id="contSeg">00</span>
+        <span class="contador__etiqueta">seg</span>
+      </div>
     </div>
-    <p class="contador__nota">Desde el día en que dijiste que sí 🩵22-07-26🩵</p>
+    <p class="contador__nota">Desde el instante en que empezó nuestra historia 🩵 22-07-26 🩵</p>
   </section>
 
-  <div class="divisor" aria-hidden="true"><span>✨</span><span>✦</span><span>✨</span></div>
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- ============================= PROMESAS ============================= -->
+  <!-- ============================= PROMESAS INTERACTIVAS ============================= -->
   <section class="seccion-promesas contenedor">
-    <h2 class="seccion-titulo">Mis promesas</h2>
-    <ul class="lista-promesas">
-      <li>- Prometo cuidar esto que estamos construyendo.</li>
-      <li>- Prometo escucharte y seguir conociéndote cada día.</li>
-      <li>- Prometo reírme contigo tanto como sea posible.</li>
-      <li>- Prometo luchar por nosotros, siempre.</li>
+    <h2 class="seccion-titulo">Mis promesas para ti</h2>
+    <p class="seccion-subtitulo">Toca cada promesa para sellarla en nuestro libro</p>
+
+    <ul class="lista-promesas revelar-scroll" id="listaPromesas">
+      <li class="promesa-item" tabindex="0" role="button">
+        <span class="promesa-check" aria-hidden="true">🕯️</span>
+        <span>Prometo cuidar cada día esto tan bonito que estamos construyendo.</span>
+      </li>
+      <li class="promesa-item" tabindex="0" role="button">
+        <span class="promesa-check" aria-hidden="true">🕯️</span>
+        <span>Prometo escucharte, comprenderte y seguir conociéndote cada día.</span>
+      </li>
+      <li class="promesa-item" tabindex="0" role="button">
+        <span class="promesa-check" aria-hidden="true">🕯️</span>
+        <span>Prometo reírme contigo y hacer feliz a esa niña dulce que llevas dentro.</span>
+      </li>
+      <li class="promesa-item" tabindex="0" role="button">
+        <span class="promesa-check" aria-hidden="true">🕯️</span>
+        <span>Prometo luchar por nosotros, hoy y siempre.</span>
+      </li>
     </ul>
+
+    <div class="juramento-final" id="juramentoFinal" aria-live="polite">
+      <p class="juramento-final__cita">“Siempre te amaré, pase lo que pase...”</p>
+      <p class="juramento-final__sub">Promesas selladas en el Libro de Nuestra Vida 🩵</p>
+    </div>
   </section>
 
-  <div class="divisor" aria-hidden="true"><span>✨</span><span>✦</span><span>✨</span></div>
+  <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- Gifs decorativos alrededor de la página (no como galería, solo ambiente) -->
+  <!-- Gifs decorativos inferiores -->
   <div class="franja-decorativa" aria-hidden="true">
-    <span class="medallon-gif"><img src="assets/gif3.gif" alt="" loading="lazy" /></span>
-    <span class="medallon-gif"><img src="assets/gif4.gif" alt="" loading="lazy" /></span>
+    <span class="medallon-gif"><img src="assets/gif3.gif" alt="" loading="lazy" decoding="async" /></span>
+    <span class="medallon-gif"><img src="assets/gif4.gif" alt="" loading="lazy" decoding="async" /></span>
   </div>
 
   <footer class="pie-carta">
     <p class="pie-carta__firma">Maivy &amp; Mattias 🩵</p>
+    <p class="pie-carta__frase">Escrito en las estrellas y en la Tierra de los Recordados</p>
     <a class="enlace-volver" href="index.html">🡐 Volver al principio</a>
   </footer>
 
-  <!-- ============================= MÚSICA (opcional) ============================= -->
-  <audio id="audioFondo" src="assets/cancion.mp3" loop preload="none"></audio>
+  <!-- ============================= MODAL LIGHTBOX (VER FOTOS EN GRANDE) ============================= -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Vista ampliada de foto">
+    <button type="button" class="lightbox__cerrar" id="lightboxCerrar" aria-label="Cerrar foto">✕</button>
+    <div class="lightbox__contenido">
+      <img src="" alt="Foto ampliada" id="lightboxImg" />
+      <p class="lightbox__caption" id="lightboxCaption"></p>
+    </div>
+  </div>
+
+  <!-- ============================= MÚSICA ============================= -->
+  <audio id="audioFondo" src="assets/cancion.mp3" loop preload="auto"></audio>
   <button type="button" class="boton-musica" id="btnMusica" aria-pressed="false" aria-label="Reproducir música">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.4" fill="none"/>
-      <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.4" fill="none"/>
+      <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.6" fill="none"/>
+      <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.6" fill="none"/>
     </svg>
   </button>
   <div class="aviso-musica" id="avisoMusica">
-    Agrega tu canción en <strong>assets/musica.mp3</strong> para activar la música 🎶
+    Toca el botón de música 🎶 para acompañar la lectura
   </div>
 
   <script src="js/script.js"></script>

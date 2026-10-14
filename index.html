@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#2b160d" />
-  <title>¿Quieres ser mi novia? 🩵</title>
+  <meta name="theme-color" content="#1e0d07" />
+  <title>Para Maivy — El Libro de Nuestra Vida 🩵</title>
 
-  <!-- Tipografías: título mágico, firma manuscrita y cuerpo legible -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Dancing+Script:wght@600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
     rel="stylesheet"
   />
 
@@ -18,34 +17,49 @@
 </head>
 <body class="pagina-inicio">
 
-  <!-- Banner decorativo de papel picado, se llena por JS -->
+  <!-- Fondo fijo optimizado por GPU (evita lag al hacer scroll en celulares) -->
+  <div class="fondo-escenario" aria-hidden="true"></div>
+
+  <!-- Banner decorativo de papel picado -->
   <div class="papel-picado" id="papelPicado" aria-hidden="true">
     <div class="papel-picado__hilo"></div>
   </div>
 
-  <!-- Pétalos de cempasúchil cayendo (decorativo) -->
+  <!-- Pétalos de cempasúchil y destellos optimizados -->
   <div class="petalos" id="petalos" aria-hidden="true"></div>
-
-  <!-- Destellos dorados titilando (decorativo) -->
   <div class="destellos" id="destellos" aria-hidden="true"></div>
 
   <main class="pantalla-pregunta">
     <div class="resplandor" aria-hidden="true"></div>
 
     <div class="contenedor">
-      <p class="pregunta__eyebrow">Para Maivy,</p>
-      <h1 class="pregunta__titulo">¿Quieres ser<br />mi novia?</h1>
-      <p class="pregunta__texto">
-        Llevo tiempo queriendo preguntarte esto. Solo tienes que decir que sí.
-      </p>
+      <div class="marco-libro">
+        <!-- Ornamento superior inspirado en El Libro de la Vida -->
+        <div class="emblema-libro" aria-hidden="true">
+          <svg viewBox="0 0 120 60" class="svg-ornamento">
+            <path d="M10 30 Q35 5 60 30 Q85 5 110 30 Q85 55 60 30 Q35 55 10 30 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="60" cy="30" r="8" fill="currentColor" />
+            <circle cx="35" cy="30" r="4" fill="currentColor" opacity="0.7" />
+            <circle cx="85" cy="30" r="4" fill="currentColor" opacity="0.7" />
+          </svg>
+        </div>
 
-      <div class="botonera" id="botonera">
-        <button type="button" class="boton boton--si" id="btnSi">Sí, quiero 🩵</button>
-        <audio id="cancion" src="assets/cancion.mp3" preload="auto"></audio>
-        <button type="button" class="boton boton--no" id="btnNo">No</button>
+        <p class="pregunta__eyebrow">Capítulo I · Para Maivy</p>
+        <h1 class="pregunta__titulo">¿Quieres ser<br />mi novia?</h1>
+        <p class="pregunta__texto">
+          Dicen que las mejores historias están escritas en el Libro de la Vida… y la mía empezó el día en que te encontré. Solo tienes que decir que sí.
+        </p>
+
+        <div class="botonera" id="botonera">
+          <button type="button" class="boton boton--si" id="btnSi">
+            <span>Sí, quiero 🩵</span>
+          </button>
+          <audio id="cancion" src="assets/cancion.mp3" preload="auto"></audio>
+          <button type="button" class="boton boton--no" id="btnNo">No</button>
+        </div>
+
+        <p class="pregunta__pie">✨ Toca con el corazón ✨</p>
       </div>
-
-      <p class="pregunta__pie">🩵 Toca con cariño 🩵</p>
     </div>
   </main>
 
