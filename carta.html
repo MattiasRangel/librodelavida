@@ -17,22 +17,16 @@
 </head>
 <body class="pagina-carta">
 
-  <!-- Barra de progreso de lectura superior -->
   <div class="barra-progreso" id="barraProgreso" aria-hidden="true"></div>
-
-  <!-- Fondo fijo optimizado por GPU -->
   <div class="fondo-escenario" aria-hidden="true"></div>
 
-  <!-- Banner decorativo de papel picado -->
   <div class="papel-picado" id="papelPicado" aria-hidden="true">
     <div class="papel-picado__hilo"></div>
   </div>
 
-  <!-- Pétalos y destellos -->
   <div class="petalos" id="petalos" aria-hidden="true"></div>
   <div class="destellos" id="destellos" aria-hidden="true"></div>
 
-  <!-- Gifs decorativos superiores -->
   <div class="franja-decorativa" aria-hidden="true">
     <span class="medallon-gif"><img src="assets/gif1.gif" alt="" loading="lazy" decoding="async" /></span>
     <span class="medallon-gif"><img src="assets/gif2.gif" alt="" loading="lazy" decoding="async" /></span>
@@ -47,7 +41,7 @@
     </div>
   </header>
 
-  <!-- ============================= CINTA DE RECUERDOS (AUTO-SCROLL INFINITO) ============================= -->
+  <!-- CINTA DE RECUERDOS (AUTO-SCROLL INFINITO) -->
   <section class="seccion-cinta" aria-label="Cinta de fotos">
     <div class="cinta-scroll" id="cintaScroll">
       <div class="cinta-scroll__pista">
@@ -62,13 +56,16 @@
         <div class="cinta-foto"><img src="assets/foto9.jpg" alt="Recuerdo 9" loading="lazy" decoding="async" /></div>
         <div class="cinta-foto"><img src="assets/foto8.jpg" alt="Recuerdo 10" loading="lazy" decoding="async" /></div>
         <div class="cinta-foto"><img src="assets/foto10.jpg" alt="Recuerdo 11" loading="lazy" decoding="async" /></div>
-        <!-- Duplicado para efecto infinito perfecto -->
+        <div class="cinta-foto"><img src="assets/foto12.jpg" alt="Recuerdo 12" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto"><img src="assets/foto13.jpeg" alt="Recuerdo 13" loading="lazy" decoding="async" /></div>
+        <!-- Duplicado para bucle continuo -->
         <div class="cinta-foto" aria-hidden="true"><img src="assets/foto11.png" alt="" loading="lazy" decoding="async" /></div>
         <div class="cinta-foto" aria-hidden="true"><img src="assets/foto2.jpg" alt="" loading="lazy" decoding="async" /></div>
         <div class="cinta-foto" aria-hidden="true"><img src="assets/foto1.jpg" alt="" loading="lazy" decoding="async" /></div>
         <div class="cinta-foto" aria-hidden="true"><img src="assets/foto3.jpg" alt="" loading="lazy" decoding="async" /></div>
         <div class="cinta-foto" aria-hidden="true"><img src="assets/foto5.jpg" alt="" loading="lazy" decoding="async" /></div>
-        <div class="cinta-foto" aria-hidden="true"><img src="assets/foto6.jpg" alt="" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto" aria-hidden="true"><img src="assets/foto12.jpg" alt="" loading="lazy" decoding="async" /></div>
+        <div class="cinta-foto" aria-hidden="true"><img src="assets/foto13.jpeg" alt="" loading="lazy" decoding="async" /></div>
       </div>
     </div>
     <p class="ayuda-toque">✨ Toca cualquier foto de la página para verla en grande ✨</p>
@@ -76,10 +73,9 @@
 
   <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- ============================= CARTA INTERACTIVA ============================= -->
+  <!-- CARTA INTERACTIVA -->
   <section class="contenedor">
     <div class="sobre-contenedor" id="sobreCarta">
-      <!-- Botón del sobre cerrado -->
       <button type="button" class="sobre-tapa" id="botonSobre" aria-label="Toca para abrir la carta">
         <span class="sobre-tapa__solapa" aria-hidden="true"></span>
         <span class="sobre-tapa__sello">🩵</span>
@@ -87,7 +83,6 @@
         <span class="sobre-tapa__chispas">✨ Escrita con todo mi amor ✨</span>
       </button>
 
-      <!-- Contenido desplegable optimizado con CSS Grid -->
       <div class="sobre-desplegable">
         <div class="sobre-desplegable__interno">
           <article class="pergamino" id="pergamino">
@@ -130,7 +125,7 @@
 
   <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- ============================= CAMINO DE RECUERDOS (SCROLL ANIMADO VERTICAL) ============================= -->
+  <!-- CAMINO DE RECUERDOS (SCROLL ANIMADO VERTICAL) -->
   <section class="seccion-camino contenedor">
     <h2 class="seccion-titulo">Momentos que iluminan mi vida</h2>
     <p class="seccion-subtitulo">Desliza hacia abajo para recorrer nuestra historia</p>
@@ -138,14 +133,14 @@
     <div class="camino-scroll">
       <article class="polaroid-scroll revelar-scroll" data-direccion="izquierda">
         <div class="polaroid-scroll__marco">
-          <img src="assets/foto11.png" alt="Nosotros" loading="lazy" decoding="async" />
+          <img src="assets/foto12.jpg" alt="Nosotros" loading="lazy" decoding="async" />
           <span class="polaroid-scroll__caption">Mi lugar favorito siempre eres tú 🩵</span>
         </div>
       </article>
 
       <article class="polaroid-scroll revelar-scroll" data-direccion="derecha">
         <div class="polaroid-scroll__marco">
-          <img src="assets/foto2.jpg" alt="Nosotros" loading="lazy" decoding="async" />
+          <img src="assets/foto13.jpeg" alt="Nosotros" loading="lazy" decoding="async" />
           <span class="polaroid-scroll__caption">La paz que encontré en tu mirada ✨</span>
         </div>
       </article>
@@ -168,13 +163,13 @@
 
   <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- ============================= RAZONES (LOTERÍA INTERACTIVA 3D) ============================= -->
+  <!-- RAZONES (LOTERÍA INTERACTIVA 3D) -->
   <section class="seccion-razones contenedor">
     <h2 class="seccion-titulo">La Lotería de Nuestro Amor</h2>
     <p class="seccion-subtitulo">Toca cada carta para voltearla y descubrir un secreto</p>
 
     <div class="loteria">
-      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 1: Toca para voltear">
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button">
         <div class="carta-loteria__inner">
           <div class="carta-loteria__frente">
             <span class="carta-loteria__num">01</span>
@@ -189,7 +184,7 @@
         </div>
       </div>
 
-      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 2: Toca para voltear">
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button">
         <div class="carta-loteria__inner">
           <div class="carta-loteria__frente">
             <span class="carta-loteria__num">02</span>
@@ -204,7 +199,7 @@
         </div>
       </div>
 
-      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 3: Toca para voltear">
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button">
         <div class="carta-loteria__inner">
           <div class="carta-loteria__frente">
             <span class="carta-loteria__num">03</span>
@@ -219,7 +214,7 @@
         </div>
       </div>
 
-      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 4: Toca para voltear">
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button">
         <div class="carta-loteria__inner">
           <div class="carta-loteria__frente">
             <span class="carta-loteria__num">04</span>
@@ -234,7 +229,7 @@
         </div>
       </div>
 
-      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 5: Toca para voltear">
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button">
         <div class="carta-loteria__inner">
           <div class="carta-loteria__frente">
             <span class="carta-loteria__num">05</span>
@@ -249,7 +244,7 @@
         </div>
       </div>
 
-      <div class="carta-loteria revelar-scroll" tabindex="0" role="button" aria-label="Carta 6: Toca para voltear">
+      <div class="carta-loteria revelar-scroll" tabindex="0" role="button">
         <div class="carta-loteria__inner">
           <div class="carta-loteria__frente">
             <span class="carta-loteria__num">06</span>
@@ -268,126 +263,70 @@
 
   <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- ============================= GALERÍA CARRUSEL 3D ============================= -->
+  <!-- GALERÍA CARRUSEL 3D -->
   <section class="seccion-galeria">
     <h2 class="seccion-titulo">Nuestro Álbum Dorado</h2>
     <p class="seccion-subtitulo">Desliza para explorar cada foto o tócala para ampliarla</p>
 
-<<<<<<< HEAD
-    <div class="galeria" id="galeria">
-      <figure class="galeria__item">
-        <img src="assets/foto11.png" alt="Foto 1 de nosotros" loading="lazy" />
-      </figure>
-      <figure class="galeria__item">
-        <img src="assets/foto2.jpg" alt="Foto 2 de nosotros" loading="lazy" />
-      </figure>
-      <figure class="galeria__item">
-        <img src="assets/foto1.jpg" alt="Foto 3 de nosotros" loading="lazy" />
-      </figure>
-      <figure class="galeria__item">
-        <img src="assets/foto3.jpg" alt="Foto 4 de nosotros" loading="lazy" />
-      </figure>
-      <figure class="galeria__item">
-        <img src="assets/foto5.jpg" alt="Foto 5 de nosotros" loading="lazy" />
-      </figure>
-      <figure class="galeria__item">
-        <img src="assets/foto6.jpg" alt="Foto 6 de nosotros" loading="lazy" />
-      </figure>
-      <figure class="galeria__item">
-        <img src="assets/foto7.jpg" alt="Foto 7 de nosotros" loading="lazy" />
-      </figure>
-      <figure class="galeria__item">
-        <img src="assets/foto4.jpg" alt="Foto 8 de nosotros" loading="lazy" />
-      </figure>
-      <figure class="galeria__item">
-        <img src="assets/foto9.jpg" alt="Foto 9 de nosotros" loading="lazy" />
-      </figure>
-      <figure class="galeria__item">
-        <img src="assets/foto8.jpg" alt="Foto 10 de nosotros" loading="lazy" />
-      </figure>
-      <figure class="galeria__item">
-        <img src="assets/foto10.jpg" alt="Foto 11 de nosotros" loading="lazy" />
-      </figure>
-      <figure class="galeria__item">
-        <img src="assets/foto12.jpg" alt="Foto 12 de nosotros" loading="lazy" />
-      </figure>
-=======
     <div class="galeria-wrapper">
       <button type="button" class="galeria-flecha galeria-flecha--izq" id="btnGaleriaIzq" aria-label="Foto anterior">❮</button>
 
       <div class="galeria" id="galeria">
         <figure class="galeria__item">
-          <img src="assets/foto11.png" alt="Nuestro recuerdo 1" loading="lazy" decoding="async" />
+          <img src="assets/foto12.jpg" alt="Nuestro recuerdo 1" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Para ti, mi amor 🌻🩵</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto13.jpeg" alt="Nuestro recuerdo 2" loading="lazy" decoding="async" />
+          <figcaption class="galeria__caption">Inolvidable contigo ✨</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="assets/foto11.png" alt="Nuestro recuerdo 3" loading="lazy" decoding="async" />
           <figcaption class="galeria__caption">Nuestro comienzo 🩵</figcaption>
         </figure>
         <figure class="galeria__item">
-          <img src="assets/foto2.jpg" alt="Nuestro recuerdo 2" loading="lazy" decoding="async" />
+          <img src="assets/foto2.jpg" alt="Nuestro recuerdo 4" loading="lazy" decoding="async" />
           <figcaption class="galeria__caption">Tu sonrisa hermosa ✨</figcaption>
         </figure>
         <figure class="galeria__item">
-          <img src="assets/foto1.jpg" alt="Nuestro recuerdo 3" loading="lazy" decoding="async" />
+          <img src="assets/foto1.jpg" alt="Nuestro recuerdo 5" loading="lazy" decoding="async" />
           <figcaption class="galeria__caption">Momentos únicos 🕯️</figcaption>
         </figure>
         <figure class="galeria__item">
-          <img src="assets/foto3.jpg" alt="Nuestro recuerdo 4" loading="lazy" decoding="async" />
+          <img src="assets/foto3.jpg" alt="Nuestro recuerdo 6" loading="lazy" decoding="async" />
           <figcaption class="galeria__caption">Juntos siempre 🌼</figcaption>
         </figure>
         <figure class="galeria__item">
-          <img src="assets/foto5.jpg" alt="Nuestro recuerdo 5" loading="lazy" decoding="async" />
+          <img src="assets/foto5.jpg" alt="Nuestro recuerdo 7" loading="lazy" decoding="async" />
           <figcaption class="galeria__caption">Mi persona favorita 🩵</figcaption>
         </figure>
         <figure class="galeria__item">
-          <img src="assets/foto6.jpg" alt="Nuestro recuerdo 6" loading="lazy" decoding="async" />
+          <img src="assets/foto6.jpg" alt="Nuestro recuerdo 8" loading="lazy" decoding="async" />
           <figcaption class="galeria__caption">Pura felicidad ✨</figcaption>
         </figure>
         <figure class="galeria__item">
-          <img src="assets/foto7.jpg" alt="Nuestro recuerdo 7" loading="lazy" decoding="async" />
+          <img src="assets/foto7.jpg" alt="Nuestro recuerdo 9" loading="lazy" decoding="async" />
           <figcaption class="galeria__caption">Cómplices de vida 🕯️</figcaption>
         </figure>
         <figure class="galeria__item">
-          <img src="assets/foto4.jpg" alt="Nuestro recuerdo 8" loading="lazy" decoding="async" />
+          <img src="assets/foto4.jpg" alt="Nuestro recuerdo 10" loading="lazy" decoding="async" />
           <figcaption class="galeria__caption">Miradas que hablan 🩵</figcaption>
         </figure>
         <figure class="galeria__item">
-          <img src="assets/foto9.jpg" alt="Nuestro recuerdo 9" loading="lazy" decoding="async" />
+          <img src="assets/foto9.jpg" alt="Nuestro recuerdo 11" loading="lazy" decoding="async" />
           <figcaption class="galeria__caption">Mi lugar seguro 🌼</figcaption>
         </figure>
         <figure class="galeria__item">
-          <img src="assets/foto8.jpg" alt="Nuestro recuerdo 10" loading="lazy" decoding="async" />
+          <img src="assets/foto8.jpg" alt="Nuestro recuerdo 12" loading="lazy" decoding="async" />
           <figcaption class="galeria__caption">Para toda la vida ✨</figcaption>
         </figure>
         <figure class="galeria__item">
-          <img src="assets/foto10.jpg" alt="Nuestro recuerdo 11" loading="lazy" decoding="async" />
+          <img src="assets/foto10.jpg" alt="Nuestro recuerdo 13" loading="lazy" decoding="async" />
           <figcaption class="galeria__caption">Te quiero tanto 🩵</figcaption>
-        </figure>
-
-        <!-- FOTOS ADICIONALES (foto12 a foto16):
-             Si las agregas a la carpeta assets/, aparecerán automáticamente.
-             Si aún no existen, el atributo onerror las oculta sin mostrar error. -->
-        <figure class="galeria__item foto-opcional">
-          <img src="assets/foto12.jpg" alt="Nuestro recuerdo 12" loading="lazy" decoding="async" onerror="this.closest('.foto-opcional').remove()" />
-          <figcaption class="galeria__caption">Un recuerdo más juntos 🩵</figcaption>
-        </figure>
-        <figure class="galeria__item foto-opcional">
-          <img src="assets/foto13.jpeg" alt="Nuestro recuerdo 13" loading="lazy" decoding="async" onerror="this.closest('.foto-opcional').remove()" />
-          <figcaption class="galeria__caption">Inolvidable contigo ✨</figcaption>
-        </figure>
-        <figure class="galeria__item foto-opcional">
-          <img src="assets/foto14.jpg" alt="Nuestro recuerdo 14" loading="lazy" decoding="async" onerror="this.closest('.foto-opcional').remove()" />
-          <figcaption class="galeria__caption">Siempre tú 🕯️</figcaption>
-        </figure>
-        <figure class="galeria__item foto-opcional">
-          <img src="assets/foto15.jpg" alt="Nuestro recuerdo 15" loading="lazy" decoding="async" onerror="this.closest('.foto-opcional').remove()" />
-          <figcaption class="galeria__caption">Nuestro amor 🌼</figcaption>
-        </figure>
-        <figure class="galeria__item foto-opcional">
-          <img src="assets/foto16.jpg" alt="Nuestro recuerdo 16" loading="lazy" decoding="async" onerror="this.closest('.foto-opcional').remove()" />
-          <figcaption class="galeria__caption">Maivy &amp; Mattias 🩵</figcaption>
         </figure>
       </div>
 
       <button type="button" class="galeria-flecha galeria-flecha--der" id="btnGaleriaDer" aria-label="Foto siguiente">❯</button>
-
     </div>
 
     <div class="galeria__puntos" id="galeriaPuntos" aria-hidden="true"></div>
@@ -395,7 +334,7 @@
 
   <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- ============================= NUEVO: ALTAR DE LAS VELAS (INTERACTIVO) ============================= -->
+  <!-- ALTAR DE LAS VELAS -->
   <section class="seccion-velas contenedor">
     <h2 class="seccion-titulo">Las Velas de Nuestro Destino</h2>
     <p class="seccion-subtitulo">Toca cada vela para encender su luz y revelar un deseo</p>
@@ -403,25 +342,19 @@
     <div class="altar-velas">
       <button type="button" class="vela-item" data-deseo="Que nunca nos falten las risas, la complicidad ni los abrazos largos.">
         <span class="vela-llama" aria-hidden="true"></span>
-        <span class="vela-cuerpo">
-          <span class="vela-corazon">🩵</span>
-        </span>
+        <span class="vela-cuerpo"><span class="vela-corazon">🩵</span></span>
         <span class="vela-etiqueta">Toca para encender</span>
       </button>
 
       <button type="button" class="vela-item" data-deseo="Que sigamos siendo el refugio seguro donde nuestros corazones descansan en paz.">
         <span class="vela-llama" aria-hidden="true"></span>
-        <span class="vela-cuerpo">
-          <span class="vela-corazon">✨</span>
-        </span>
+        <span class="vela-cuerpo"><span class="vela-corazon">✨</span></span>
         <span class="vela-etiqueta">Toca para encender</span>
       </button>
 
       <button type="button" class="vela-item" data-deseo="Que esta historia que escribimos juntos dure en esta vida y en todas las que vengan.">
         <span class="vela-llama" aria-hidden="true"></span>
-        <span class="vela-cuerpo">
-          <span class="vela-corazon">🌼</span>
-        </span>
+        <span class="vela-cuerpo"><span class="vela-corazon">🌼</span></span>
         <span class="vela-etiqueta">Toca para encender</span>
       </button>
     </div>
@@ -433,7 +366,7 @@
 
   <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- ============================= CONTADOR DE TIEMPO JUNTOS ============================= -->
+  <!-- CONTADOR DE TIEMPO JUNTOS -->
   <section class="seccion-contador contenedor">
     <h2 class="seccion-titulo">Nuestro tiempo juntos</h2>
     <div class="contador" id="contador" aria-live="polite">
@@ -459,7 +392,7 @@
 
   <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- ============================= PROMESAS INTERACTIVAS ============================= -->
+  <!-- PROMESAS INTERACTIVAS -->
   <section class="seccion-promesas contenedor">
     <h2 class="seccion-titulo">Mis promesas para ti</h2>
     <p class="seccion-subtitulo">Toca cada promesa para sellarla en nuestro libro</p>
@@ -491,7 +424,6 @@
 
   <div class="divisor" aria-hidden="true"><span>🌼</span><span>✦</span><span>🕯️</span><span>✦</span><span>🌼</span></div>
 
-  <!-- Gifs decorativos inferiores -->
   <div class="franja-decorativa" aria-hidden="true">
     <span class="medallon-gif"><img src="assets/gif3.gif" alt="" loading="lazy" decoding="async" /></span>
     <span class="medallon-gif"><img src="assets/gif4.gif" alt="" loading="lazy" decoding="async" /></span>
@@ -503,7 +435,7 @@
     <a class="enlace-volver" href="index.html">🡐 Volver al principio</a>
   </footer>
 
-  <!-- ============================= MODAL LIGHTBOX (VER FOTOS EN GRANDE) ============================= -->
+  <!-- MODAL LIGHTBOX -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Vista ampliada de foto">
     <button type="button" class="lightbox__cerrar" id="lightboxCerrar" aria-label="Cerrar foto">✕</button>
     <div class="lightbox__contenido">
@@ -512,7 +444,7 @@
     </div>
   </div>
 
-  <!-- ============================= MÚSICA ============================= -->
+  <!-- MÚSICA -->
   <audio id="audioFondo" src="assets/cancion.mp3" loop preload="auto"></audio>
   <button type="button" class="boton-musica" id="btnMusica" aria-pressed="false" aria-label="Reproducir música">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
